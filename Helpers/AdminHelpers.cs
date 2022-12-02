@@ -70,12 +70,23 @@ namespace GasPOS.Helpers
             return listOfCynlinderCategories;
         }
 
-
-
-
-        
-
-
+        public CynlinderCategoryViewModel GetCynliderByCynliderId(int id)
+        {
+            var category = _context.CynlinderCategories.Where(x => x.Id == id && x.Name != null).FirstOrDefault();
+            if (category != null)
+            {
+                var newcategory = new CynlinderCategoryViewModel
+                {
+                    Id = category.Id,   
+                    DateCreated = DateTime.Now,
+                    Name = category.Name,   
+                    Deleted = category.Deleted,
+                    Active = category.Active,   
+                    Quantity = category.Quantity,
+                };
+            }
+            return null;
+        }
 
     }
 }
