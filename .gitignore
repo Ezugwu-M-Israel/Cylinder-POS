@@ -5,5 +5,3 @@
 /bin/Debug/net6.0
 /.vs
 /obj
-*.csproj
-/GasPOS.csproj.user
