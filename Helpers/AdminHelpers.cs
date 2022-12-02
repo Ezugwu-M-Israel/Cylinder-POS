@@ -24,8 +24,6 @@ namespace GasPOS.Helpers
             _webHostEnvironment = webHostEnvironment;
 
         }
-
-
         public bool AddCynlinderCategory(CynlinderCategoryViewModel cynlinderCategoryViewModel)
         {
             if (cynlinderCategoryViewModel != null)
@@ -43,9 +41,7 @@ namespace GasPOS.Helpers
                 return true;
             }
             return false;
-        }
-     
-        
+        }     
         public List<CynlinderCategoryViewModel> ListOfCynlinderCategories()
         {
             var listOfCynlinderCategories = new List<CynlinderCategoryViewModel>();
@@ -69,24 +65,82 @@ namespace GasPOS.Helpers
             }
             return listOfCynlinderCategories;
         }
-
-        public CynlinderCategoryViewModel GetCynliderByCynliderId(int id)
+        public CynlinderCategory GetCynliderByCynliderId(int id)
         {
-            var category = _context.CynlinderCategories.Where(x => x.Id == id && x.Name != null).FirstOrDefault();
-            if (category != null)
+            var cynlinderCategory = new CynlinderCategory();
+            if (id != 0)
             {
-                var newcategory = new CynlinderCategoryViewModel
+                var category = _context.CynlinderCategories.Where(x => x.Id == id && x.Name != null).FirstOrDefault();
+                if (category != null)
                 {
-                    Id = category.Id,   
-                    DateCreated = DateTime.Now,
-                    Name = category.Name,   
-                    Deleted = category.Deleted,
-                    Active = category.Active,   
-                    Quantity = category.Quantity,
-                };
+                    return category;
+
+                }
+                return cynlinderCategory;
             }
-            return null;
+            return cynlinderCategory;
         }
+
+        public bool AddCynlinder(CynlinderViewModel cynlinderViewModel)
+        {
+            if (cynlinderViewModel != null)
+            {
+                var cynlinders = new Cynlinder()
+                {
+                    Name = cynlinderViewModel.Name,
+                    Price = cynlinderViewModel.Price,
+                    Active = true,
+                    DateCreated = DateTime.Now,
+                    Deleted = false,
+                };
+                _context.Cynlinders.Add(cynlinders);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public List<CynlinderViewModel> ListOfCynlinder()
+        {
+            var listOfCynlinder = new List<CynlinderViewModel>();
+            var list = _context.Cynlinders.Where(x => x.Id != 0).ToList();
+            if (list.Count > 0)
+            {
+                foreach (var lists in list)
+                {
+                    var cynlinderViewModel = new CynlinderViewModel()
+                    {
+                        Name = lists.Name,
+                        Active = true,
+                        Deleted = lists.Deleted,
+                        DateCreated = DateTime.Now,
+                        Id = lists.Id,
+                        Price = lists.Price,
+                    };
+                    listOfCynlinder.Add(cynlinderViewModel);
+                }
+                return listOfCynlinder;
+            }
+            return listOfCynlinder;
+        }
+
+        public Cynlinder GetCynlinderByCynlinderId(int id)
+        {
+            var cynlinder = new Cynlinder();
+            if (id != 0)
+            {
+                var category = _context.Cynlinders.Where(x => x.Id == id && x.Name != null).FirstOrDefault();
+                if (category != null)
+                {
+                    return category;
+
+                }
+                return cynlinder;
+            }
+            return cynlinder;
+        }
+
+
 
     }
 }

@@ -1,10 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using GasPOS.Models;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-namespace GasPOS.Models
+namespace GasPOS.ViewModel
 {
-    public class Cynlinder
+    public class CynlinderViewModel
     {
+
         [Key]
         public int Id { get; set; }
         public string? Name { get; set; }
