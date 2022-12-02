@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GasPOS", "GasPOS.csproj", "{5B2115AE-7366-40A9-AE30-FEB8C51F70D6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5B2115AE-7366-40A9-AE30-FEB8C51F70D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B2115AE-7366-40A9-AE30-FEB8C51F70D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B2115AE-7366-40A9-AE30-FEB8C51F70D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B2115AE-7366-40A9-AE30-FEB8C51F70D6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4E8A05E4-67F3-4408-BCDB-F6DD38C1DCF5}
+	EndGlobalSection
+EndGlobal
