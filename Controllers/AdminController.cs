@@ -66,8 +66,35 @@ namespace GasPOS.Controllers
             return Json(new { isError = true, msg = "Error Ocurred" });
         }
 
+        [HttpGet]
+        public IActionResult Cynlider()
+        {
+            var category = _adminHelpers.ListOfCynlinder();
+            if (category != null)
+            {
+                return View(category);
+            }
+            return View(category);
+        }
 
-
+        [HttpPost]
+        public JsonResult AddCynlinder(string gasCynlinder)
+        {
+            if (gasCynlinder != null)
+            {
+                var cynlinderViewModel = JsonConvert.DeserializeObject<CynlinderViewModel>(gasCynlinder);
+                if (cynlinderViewModel != null)
+                {
+                    var addCynlinder = _adminHelpers.AddCynlinder(cynlinderViewModel);
+                    if (addCynlinder)
+                    {
+                        return Json(new { isError = false, msg = "Cynlinder created Successfully" });
+                    }
+                    return Json(new { isError = true, msg = "Unable to create Cynlinder" });
+                }
+            }
+            return Json(new { isError = true, msg = "Error Ocurred" });
+        }
 
 
     }
