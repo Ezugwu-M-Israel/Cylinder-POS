@@ -14,15 +14,16 @@ namespace GasPOS.Helpers
         private readonly AppDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IAdminHelpers _adminHelpers;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public AdminHelpers(AppDbContext context, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IWebHostEnvironment webHostEnvironment)
+        public AdminHelpers(AppDbContext context, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IWebHostEnvironment webHostEnvironment, IAdminHelpers adminHelpers)
         {
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
             _webHostEnvironment = webHostEnvironment;
-
+            _adminHelpers = adminHelpers;   
         }
         public bool AddCynlinderCategory(CynlinderCategoryViewModel cynlinderCategoryViewModel)
         {
@@ -42,7 +43,7 @@ namespace GasPOS.Helpers
             }
             return false;
         }     
-        public List<CynlinderCategoryViewModel> ListOfCynlinderCategories()
+        public List<CynlinderCategoryViewModel> GetListOfCynlinderCategories()
         {
             var listOfCynlinderCategories = new List<CynlinderCategoryViewModel>();
             var list = _context.CynlinderCategories.Where(x => x.Id != 0).ToList();

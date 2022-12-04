@@ -6,7 +6,7 @@ namespace GasPOS.IHelpers
     public interface IAdminHelpers
     {
         bool AddCynlinderCategory(CynlinderCategoryViewModel cynlinderCategoryViewModel);
-        List<CynlinderCategoryViewModel> ListOfCynlinderCategories();
+        List<CynlinderCategoryViewModel> GetListOfCynlinderCategories();
         CynlinderCategory GetCynliderByCynliderId(int id);
         bool AddCynlinder(CynlinderViewModel cynlinderViewModel);
         Cynlinder GetCynlinderByCynlinderId(int id);
