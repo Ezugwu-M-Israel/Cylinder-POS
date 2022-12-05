@@ -1,6 +1,63 @@
-﻿
+﻿@model IEnumerable<GasPOS.ViewModel.CynlinderViewModel>
 
 @{
     ViewData["Title"] = "Cynlinder";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
+<main id="main" class="main">
+
+     <div class="pagetitle">
+      <h1>Chart.js</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Charts</li>
+          <li class="breadcrumb-item active">Chart.js</li>
+        </ol>
+      </nav>
+    </div>
+
+    <p>Chart.JS Examples. You can check the <a href="https://www.chartjs.org/docs/latest/samples/" target="_blank">official website</a> for more examples.</p>
+
+
+
+    <section class="section">
+        <div class="row">
+
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Radar Chart</h5>
+
+                        @if (Model != null && Model.Count() > 0)
+                        {
+                            @foreach (var gas in Model)
+                            {
+                                <div class="card col-3" style="margin-top:130px; background-color: #222756ff;">
+                                    <img src="@gas.ImageUrl" alt="" style="width:100%; height:190px;" />
+                                    <h1 class="text-white">@gas.Name</h1>
+                                    <p class="text-white">@gas.Price</p>
+                                    <p class="text-white">@gas.Active</p>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="text-center">
+
+                                <h1> No record find </h1>
+
+                            </div>
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </section>
+</main>

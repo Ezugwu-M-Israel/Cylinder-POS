@@ -12,18 +12,10 @@ namespace GasPOS.Helpers
     {
 
         private readonly AppDbContext _context;
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly IAdminHelpers _adminHelpers;
-        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public AdminHelpers(AppDbContext context, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IWebHostEnvironment webHostEnvironment, IAdminHelpers adminHelpers)
+        public AdminHelpers(AppDbContext context)
         {
-            _context = context;
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _webHostEnvironment = webHostEnvironment;
-            _adminHelpers = adminHelpers;   
+            _context = context; 
         }
         public bool AddCynlinderCategory(CynlinderCategoryViewModel cynlinderCategoryViewModel)
         {

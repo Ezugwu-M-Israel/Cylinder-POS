@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IUserHelper, UserHelper>();
+builder.Services.AddScoped<IAdminHelpers, AdminHelpers>();
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("GasPOS")));
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
