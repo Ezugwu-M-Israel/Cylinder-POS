@@ -29,6 +29,7 @@
 				if (!result.isError) {
 					var url = '/Account/Login';
 					newSuccessAlert(result.msg, url);
+					location.href = result.redirectUrl;
 				}
 				else {
 					errorAlert(result.msg);
@@ -40,6 +41,43 @@
 		});
 
     }
+}
+
+
+
+function login() {
+	debugger;
+	var data = {};
+	data.Email = $('#email').val();
+	data.Password = $('#password').val();
+	let loginDetails = JSON.stringify(data);
+	reader.onload = function () {
+		$.ajax({
+			type: 'Post',
+			dataType: 'Json',
+			url: '/Account/Login',
+			data:
+			{
+				loginDetails: loginDetails,
+			},
+			success: function (result) {
+				debugger;
+				if (!result.isError) {
+					var url = '/Account/Login';
+					newSuccessAlert(result.msg, url);
+					location.href = result.redirectUrl;
+				}
+				else {
+					errorAlert(result.msg);
+				}
+			},
+			error: function (ex) {
+				errorAlert("Error Occured,try again.");
+			}
+		});
+
+	}
+
 }
 
 

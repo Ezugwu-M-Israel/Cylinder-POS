@@ -97,11 +97,11 @@ namespace GasPOS.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(string userDetails)
+        public IActionResult Login(string loginDetails)
         {
-            if (userDetails != null)
+            if (loginDetails != null)
             {
-                var applicationUserViewModel = JsonConvert.DeserializeObject<ApplicationUserViewModel>(userDetails);
+                var applicationUserViewModel = JsonConvert.DeserializeObject<ApplicationUserViewModel>(loginDetails);
 
                 if (applicationUserViewModel.Email == null)
                 {
@@ -120,14 +120,16 @@ namespace GasPOS.Controllers
                         var userRole = _userManager.IsInRoleAsync(existing, "Admin").Result;
                         if (userRole)
                         {
+                            return Json(new { isError = true, msg = "Login Successfully", redirectUrl = "/Admin/AdminDashboard" });
 
-                            TempData["success"] = "Successfully!";
-                            return RedirectToAction("AdminDashboard", "Admin");
+                            //TempData["success"] = "Successfully!";
+                            //return RedirectToAction("AdminDashboard", "Admin");
                         }
                         else
                         {
-                            TempData["success"] = "Successfully!";
-                            return RedirectToAction("Index", "Home");
+                            return Json(new { isError = true, msg = "Login Successfully", redirectUrl = "/Home/Index" });
+                            //TempData["success"] = "Successfully!";
+                            //return RedirectToAction("Index", "Home");
                         }
                     }
 
