@@ -4,6 +4,7 @@ using GasPOS.Models;
 using GasPOS.ViewModel;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace GasPOS.Helpers
 {
@@ -20,6 +21,30 @@ namespace GasPOS.Helpers
             _signInManager = signInManager;
         }
 
+        public async Task<ApplicationUser> FindByUserNameAsync(string username)
+        {
+            return await _userManager.Users.Where(x => x.UserName == username).FirstOrDefaultAsync();
+        }
+        public async Task<ApplicationUser> FindByUserEmailAsync(string username)
+        {
+            return await _userManager.Users.Where(x => x.UserName == username).FirstOrDefaultAsync();
+        }
+        public ApplicationUser FindByUsername(string username)
+        {
+            return _userManager.Users.Where(x => x.UserName == username).FirstOrDefault();
+        }
+        public string GetUserById(string username)
+        {
+            return _userManager.Users.Where(x => x.UserName == username).FirstOrDefaultAsync().Result.Id?.ToString();
+        }
+        public async Task<ApplicationUser> FindUserByEmail(string email)
+        {
+            return await _userManager.Users.Where(x => x.Email == email).FirstOrDefaultAsync();
+        }
+        public async Task<ApplicationUser> FindUserByIdAsync(string id)
+        {
+            return await _userManager.Users.Where(x => x.Id == id).FirstOrDefaultAsync();
+        }
         public ApplicationUser FindByEmail(string? email)
         {
             return _userManager.Users.Where(x => x.Email == email).FirstOrDefault();

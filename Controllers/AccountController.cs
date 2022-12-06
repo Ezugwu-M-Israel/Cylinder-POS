@@ -68,10 +68,77 @@ namespace GasPOS.Controllers
                         await _userManager.AddToRoleAsync(registerUser, "Admin");
                         return Json(new { isError = false, msg = "Register Successfully" });
                     }
+
                 }
+
 
             }
             return Json(new { isError = false, msg = "Error Ocurred" });
+        }
+
+
+        public IActionResult LogOut()
+        {
+            _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+
+
+
+
+
+
+
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(string userDetails)
+        {
+            if (userDetails != null)
+            {
+                var applicationUserViewModel = JsonConvert.DeserializeObject<ApplicationUserViewModel>(userDetails);
+
+                if (applicationUserViewModel.Email == null)
+                {
+                    return Json(new { isError = true, msg = "Please Enter Your Emil" });
+                }
+                if (applicationUserViewModel.Password == null)
+                {
+                    return Json(new { isError = true, msg = "Please Enter Your Password" });
+                }
+                var existing = _userManager.Users.Where(u => u.UserName == applicationUserViewModel.Email).FirstOrDefault();
+                if (existing != null)
+                {
+                    var PasswordSigin = _signInManager.PasswordSignInAsync(applicationUserViewModel.Email, applicationUserViewModel.Password, true, false).Result;
+                    if (PasswordSigin.Succeeded)
+                    {
+                        var userRole = _userManager.IsInRoleAsync(existing, "Admin").Result;
+                        if (userRole)
+                        {
+
+                            TempData["success"] = "Successfully!";
+                            return RedirectToAction("AdminDashboard", "Admin");
+                        }
+                        else
+                        {
+                            TempData["success"] = "Successfully!";
+                            return RedirectToAction("Index", "Home");
+                        }
+                    }
+
+                }
+                else
+                {
+                    return Json(new { isError = false, msg = "Username does not Exist!" });
+                    
+                }
+            }
+            return Json(new { isError = false, msg = "Login was Failed!" });
         }
 
 
@@ -86,9 +153,5 @@ namespace GasPOS.Controllers
 
 
 
-
-
-
-        
     }
 }

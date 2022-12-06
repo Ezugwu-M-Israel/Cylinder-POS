@@ -27,7 +27,7 @@
 			success: function (result) {
 				debugger;
 				if (!result.isError) {
-					var url = '/Admin/Index';
+					var url = '/Account/Login';
 					newSuccessAlert(result.msg, url);
 				}
 				else {
