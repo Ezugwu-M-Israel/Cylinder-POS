@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - GasPOS</title>
+    <script src="~/js/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/GasPOS.styles.css" asp-append-version="true" />
@@ -20,6 +21,85 @@
     <link href="~/niceadmin/assets/css/style.css" rel="stylesheet" />
 
 
+
+    <script>
+        function errorAlert(message) {
+            Swal.fire({
+                icon: 'error',
+                text: message,
+                timer: 60000,
+            })
+        }
+
+        function infoAlert(message) {
+            Swal.fire({
+                icon: 'info',
+                text: message,
+            })
+        }
+
+        function infoAlertWithStyles(message) {
+            Swal.fire({
+                title: 'Notification',
+                icon: 'info',
+                text: message,
+            })
+        }
+
+        function successAlert(message) {
+            Swal.fire({
+                icon: 'success',
+                text: message,
+                timer: 60000,
+            })
+        }
+
+        function newErrorAlert(message, url) {
+            Swal.fire({
+                icon: 'error',
+                text: message,
+            }).then((isConfirm) => {
+                if (isConfirm) {
+                    location.reload(url);
+                }
+            })
+        }
+
+        function newSuccessAlert(message, url) {
+            Swal.fire({
+                icon: 'success',
+                text: message,
+            }).then((isConfirm) => {
+                if (isConfirm) {
+                    location.reload(url);
+                }
+            })
+
+        }
+
+        //function newSuccessAlert(message, url) {
+        //    Swal.fire({
+        //        icon: 'success',
+        //        text: message,
+        //    }).then(function () {
+
+        //        location.href = url;
+        //    })
+        //}
+
+        function successAlertWithRedirect(message, url) {
+            Swal.fire({
+                title: "Success",
+                text: message,
+                icon: "success",
+                timer: 30000,
+                overlay: "background - color: rgba(43, 165, 137, 0.45)",
+            }).then(function () {
+
+                location.href = url;
+            })
+        }
+    </script>
 
 </head>
 <body>
@@ -524,6 +604,10 @@
     <script src="~/niceadmin/assets/vendor/simple-datatables/simple-datatables.js"></script>
     <script src="~/niceadmin/assets/vendor/tinymce/tinymce.min.js"></script>
     <script src="~/niceadmin/assets/vendor/php-email-form/validate.js"></script>
+
+    <script src="~/js/sweetalert2.all.min.js"></script>
+    <script src="~/js/sweetalert.min.js"></script>
+
 
     <script src="~/niceadmin/assets/js/main.js"></script>
     <script src="~/js/site.js"></script>

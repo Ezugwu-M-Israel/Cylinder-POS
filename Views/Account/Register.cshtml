@@ -2,109 +2,116 @@
 
 @{
     ViewData["Title"] = "Register";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <main>
-    <div class="container">
+  <div class="container">
 
-      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+    <div class="row justify-content-center">
+      <div class="col-10  d-flex flex-column align-items-center justify-content-center">
 
-              <div class="d-flex justify-content-center py-4">
-                <a href="index.html" class="logo d-flex align-items-center w-auto">
-                  <img src="~/niceadmin/assets/img/logo.png" alt="" />
-                  <span class="d-none d-lg-block">NiceAdmin</span>
-                </a>
-              </div><!-- End Logo -->
+        <div class="d-flex justify-content-center py-4">
+        <a href="index.html" class="logo d-flex align-items-center w-auto">
+            <img src="~/niceadmin/assets/img/logo.png" alt="" />
+            <span class="d-none d-lg-block">NiceAdmin</span>
+        </a>
+        </div><!-- End Logo -->
 
-              <div class="card mb-3">
+              <div class="card mb-3 pb-5">
 
-                <div class="card-body">
+                <div class="card-body pb-5">
 
                   <div class="pt-4 pb-2">
                     <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
                     <p class="text-center small">Enter your personal details to create account</p>
                   </div>
 
-                  
-                    <div class="col-12">
-                      <label for="name" class="form-label">First Name</label>
-                      <input type="text" name="name" class="form-control" id="firstName" required>
-                      <div class="invalid-feedback">Please, enter your name!</div>
-                    </div>
-                    <div class="col-12">
-                        <label for="name" class="form-label">Last Name</label>
-                        <input type="text" name="name" class="form-control" id="lastName" required>
-                        <div class="invalid-feedback">Please, enter your name!</div>
-                    </div>
+                      <div class="row justify-content-center">
+                            <div class="col-sm-6">
+                                <label for="name" class="form-label">First Name</label>
+                                <input type="text" name="name" class="form-control" id="firstName" required>
+                                <div class="invalid-feedback">Please, enter your name!</div>
+                            </div>
 
-                    <div class="col-12">
-                      <label for="MiddleName" class="form-label"> MiddleName</label>
-                      <input type="text" name="name" class="form-control" id="middleName" required>
-                      <div class="invalid-feedback">Please enter your middleName!</div>
-                    </div>
-
-                    <div class="col-12">
-                        <label for="email" class="form-label"> Email</label>
-                        <input type="text" name="name" class="form-control" id="email" required>
-                        <div class="invalid-feedback">Please enter your email!</div>
-                    </div>
-
-                    <div class="col-12">
-                      <label for="address" class="form-label">Home Address</label>
-                      <input type="text" name="name" class="form-control" id="homeAddress" required>
-                      <div class="invalid-feedback">Please enter your adddress!</div>
-                    </div>
-
-                    <div class="col-12">
-                      <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="password" required>
-                      <div class="invalid-feedback">Please enter your password!</div>
-                    </div>
-
-                    <div class="col-12">
-                      <label for="yourPassword" class="form-label">Confirm Password</label>
-                      <input type="password" name="password" class="form-control" id="confirmPassword" required>
-                      <div class="invalid-feedback">Please enter your password!</div>
-                    </div>
-
-
-                    <div class="col-12">
-                      <div class="form-check">
-                        <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
-                        <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#">terms and conditions</a></label>
-                        <div class="invalid-feedback">You must agree before submitting.</div>
+                            <div class="col-sm-6">
+                                <label for="name" class="form-label">Last Name</label>
+                                <input type="text" name="name" class="form-control" id="lastName" required>
+                                <div class="invalid-feedback">Please, enter your name!</div>
+                            </div>
+                        
                       </div>
+
+
+                     <div class="row justify-content-center">
+                        <div class="col-sm-6">
+                          <label for="MiddleName" class="form-label"> MiddleName</label>
+                          <input type="text" name="name" class="form-control" id="middleName" required>
+                          <div class="invalid-feedback">Please enter your middleName!</div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="email" class="form-label"> Email</label>
+                            <input type="text" name="name" class="form-control" id="email" required>
+                            <div class="invalid-feedback">Please enter your email!</div>
+                        </div>
+                     </div>
+
+
+                     <div class="row justify-content-center">
+                        <div class="col-sm-6">
+                          <label for="address" class="form-label">Home Address</label>
+                          <input type="text" name="name" class="form-control" id="address" required>
+                          <div class="invalid-feedback">Please enter your adddress!</div>
+                        </div>
+
+                        <div class="col-sm-6">
+                          <label for="yourPassword" class="form-label">Password</label>
+                          <input type="password" name="password" class="form-control" id="password" required>
+                          <div class="invalid-feedback">Please enter your password!</div>
+                        </div>
+                     </div>
+
+
+                    <div class="row justify-content-center">
+                       <div class="col-sm-6">
+                          <label for="yourPassword" class="form-label">Confirm Password</label>
+                          <input type="password" name="password" class="form-control" id="confirmPassword" required>
+                          <div class="invalid-feedback">Please enter your password!</div>
+                       </div>
+
+                        <div class="col-sm-6">
+                          <label for="file" class="form-label">ProfilePicture</label>
+                          <input type="file" name="ProfilePicture" class="form-control" id="picture" required>
+                          <div class="invalid-feedback">Please enter your picture!</div>
+                        </div>
+
                     </div>
-                    <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit" onclick="registerUser()">Create Account</button>
+
+                    <div class="col-12 pt-5">
+                      <button class="btn btn-primary w-100 rounded-pill" type="submit" onclick="registerUser()">Create Account</button>
                     </div>
-                    <div class="col-12">
+
+                    <div class="col-12 pt-3">
                       <p class="small mb-0">Already have an account? <a href="pages-login.html">Log in</a></p>
                     </div>
-                  
 
                 </div>
               </div>
 
-              <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-              </div>
-
-            </div>
-          </div>
+        <div class="credits">
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
         </div>
 
-      </section>
-
+      </div>
     </div>
-  </main><!-- End #main -->
+
+
+  </div>
+</main><!-- End #main -->
 
 

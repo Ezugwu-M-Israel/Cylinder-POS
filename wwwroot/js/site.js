@@ -5,7 +5,7 @@
     data.FirstName = $('#firstName').val();
     data.LastName = $('#lastName').val();
     data.MiddleName = $('#middleName').val();
-    data.Address = $('homeAddress').val();
+    data.Address = $('#address').val();
     data.Email = $('#email').val();
     data.Password = $('#password').val();
     data.ConfirmPassword = $('#confirmPassword').val();
@@ -21,7 +21,7 @@
 			url: '/Account/Register',
 			data:
 			{
-				applicationUserViewModel: userDetails,
+				userDetails: userDetails,
 				base64: base64
 			},
 			success: function (result) {

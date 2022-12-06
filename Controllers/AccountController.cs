@@ -40,33 +40,33 @@ namespace GasPOS.Controllers
                     var user = _userHelper.FindByEmail(applicationUserViewModel.Email);
                     if (user != null)
                     {
-                        return Json(new { isError = false, msg = "Please A user with this email already exist" });
+                        return Json(new { isError = true, msg = "Please A user with this email already exist" });
                     }
                     if (applicationUserViewModel.FirstName == null)
                     {
-                        return Json(new { isError = false, msg = "Please Enter Your FirstName" });
+                        return Json(new { isError = true, msg = "Please Enter Your FirstName" });
                     }
                     if (applicationUserViewModel.MiddleName == null)
                     {
-                        return Json(new { isError = false, msg = "Please Enter Your MiddleName" });
+                        return Json(new { isError = true, msg = "Please Enter Your MiddleName" });
                     }
                     if (applicationUserViewModel.LastName == null)
                     {
-                        return Json(new { isError = false, msg = "Please Enter Your LastName" });
+                        return Json(new { isError = true, msg = "Please Enter Your LastName" });
                     }
                     if (applicationUserViewModel.Address == null)
                     {
-                        return Json(new { isError = false, msg = "Please Enter Your Address" });
+                        return Json(new { isError = true, msg = "Please Enter Your Address" });
                     }
                     if (applicationUserViewModel.Password != applicationUserViewModel.ConfirmPassword)
                     {
-                        return Json(new { isError = false, msg = "Password and Confirm Password must match" });
+                        return Json(new { isError = true, msg = "Password and Confirm Password must match" });
                     }
                     var registerUser = await _userHelper.UserRegistertion(applicationUserViewModel, base64).ConfigureAwait(false);
                     if (registerUser != null)
                     {
                         await _userManager.AddToRoleAsync(registerUser, "Admin");
-                        return Json(new { isError = true, msg = "Register Successfully" });
+                        return Json(new { isError = false, msg = "Register Successfully" });
                     }
                 }
 
