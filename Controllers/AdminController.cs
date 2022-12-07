@@ -67,8 +67,9 @@ namespace GasPOS.Controllers
         }
 
         [HttpGet]
-        public IActionResult Cynlider()
+        public IActionResult Cynlinder()
         {
+            ViewBag.CynlinderCategory = _adminHelpers.GetCynlinderCategory().Result;
             var category = _adminHelpers.ListOfCynlinder();
             if (category != null)
             {
@@ -78,14 +79,15 @@ namespace GasPOS.Controllers
         }
 
         [HttpPost]
-        public JsonResult AddCynlinder(string gasCynlinder)
+        public async Task<JsonResult> AddCynlinder(string gasCynlinder, string base64)
         {
+            ViewBag.CynlinderCategory = _adminHelpers.GetCynlinderCategory().Result;
             if (gasCynlinder != null)
             {
                 var cynlinderViewModel = JsonConvert.DeserializeObject<CynlinderViewModel>(gasCynlinder);
                 if (cynlinderViewModel != null)
                 {
-                    var addCynlinder = _adminHelpers.AddCynlinder(cynlinderViewModel);
+                    var addCynlinder = _adminHelpers.AddCynlinder(cynlinderViewModel, base64);
                     if (addCynlinder)
                     {
                         return Json(new { isError = false, msg = "Cynlinder created Successfully" });

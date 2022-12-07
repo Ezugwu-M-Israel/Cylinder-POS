@@ -9,6 +9,7 @@ namespace GasPOS.ViewModel
 
         [Key]
         public int Id { get; set; }
+        [Required]
         public string? Name { get; set; }
         public string? Price { get; set; }
         public string? ImageUrl { get; set; }
@@ -17,6 +18,6 @@ namespace GasPOS.ViewModel
         public virtual CynlinderCategory? CynlinderCategory { get; set; }
         public bool Active { get; set; }
         public bool Deleted { get; set; }
-        public DateTime DateCreated { get; set; }
+        public DateTime? DateCreated { get; set; }
     }
 }

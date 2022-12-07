@@ -61,49 +61,37 @@
 
     </div>
 
-    
 
 
 
 
-
-
-
-
-
-
-
-             <div class="modal fade" id="smallModal" tabindex="-1">
-                 <div class="modal-dialog modal-dialog-centered">
-                     <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title"> CYNLINDER CATEGORY </h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
+    <div class="modal fade" id="smallModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"> CYNLINDER CATEGORY </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
                           
-                                <div class="form-group">
+                    <div class="form-group">
+                        <label>Gas Name</label>
+                        <input class="form-control" type="text" id="name"/>
+                    </div>
 
-                                    <label>Gas Name</label>
-                                    <input class="form-control" type="text" id="name"/>
+                    <div class="form-group">
+                        <label>Gas Quantity</label>
+                        <input class="form-control" type="text" id="quantity"/>
+                    </div>
 
-                                </div>
-
-                                <div class="form-group">
-
-                                    <label>Gas Quantity</label>
-                                    <input class="form-control" type="text" id="Quantity"/>
-
-                                </div>
-
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
-                        </div>
-                     </div>
-                 </div>
-             </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+                    <button type="button" class="btn btn-primary" onclick="addCategory()">Add CynlinderCategory</button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
     
 </main>
 

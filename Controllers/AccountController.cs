@@ -14,7 +14,6 @@ namespace GasPOS.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IUserHelper _userHelper;
-
         public AccountController(AppDbContext context, IUserHelper userHelper, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _context = context;
@@ -68,10 +67,7 @@ namespace GasPOS.Controllers
                         await _userManager.AddToRoleAsync(registerUser, "Admin");
                         return Json(new { isError = false, msg = "Register Successfully" });
                     }
-
                 }
-
-
             }
             return Json(new { isError = false, msg = "Error Ocurred" });
         }
@@ -85,11 +81,6 @@ namespace GasPOS.Controllers
 
 
 
-
-
-
-
-
         [HttpGet]
         public IActionResult Login()
         {
@@ -97,12 +88,11 @@ namespace GasPOS.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(string loginDetails)
+        public async Task<IActionResult> Login(string loginDetails)
         {
             if (loginDetails != null)
             {
                 var applicationUserViewModel = JsonConvert.DeserializeObject<ApplicationUserViewModel>(loginDetails);
-
                 if (applicationUserViewModel.Email == null)
                 {
                     return Json(new { isError = true, msg = "Please Enter Your Emil" });
@@ -114,21 +104,22 @@ namespace GasPOS.Controllers
                 var existing = _userManager.Users.Where(u => u.UserName == applicationUserViewModel.Email).FirstOrDefault();
                 if (existing != null)
                 {
-                    var PasswordSigin = _signInManager.PasswordSignInAsync(applicationUserViewModel.Email, applicationUserViewModel.Password, true, false).Result;
+                    var PasswordSigin =await _signInManager.PasswordSignInAsync(applicationUserViewModel.Email, applicationUserViewModel.Password, true, false).ConfigureAwait(false);
                     if (PasswordSigin.Succeeded)
                     {
                         var userRole = _userManager.IsInRoleAsync(existing, "Admin").Result;
                         if (userRole)
                         {
-                            return Json(new { isError = true, msg = "Login Successfully", redirectUrl = "/Admin/AdminDashboard" });
+                            return Json(new { isError = false, msg = "Login Successfully" });
 
                             //TempData["success"] = "Successfully!";
                             //return RedirectToAction("AdminDashboard", "Admin");
                         }
                         else
                         {
-                            return Json(new { isError = true, msg = "Login Successfully", redirectUrl = "/Home/Index" });
+                            return Json(new { isError = false, msg = "Login Successfully" });
                             //TempData["success"] = "Successfully!";
+                            //, redirectUrl = "/Home/Index"
                             //return RedirectToAction("Index", "Home");
                         }
                     }

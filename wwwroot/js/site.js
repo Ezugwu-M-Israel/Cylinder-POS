@@ -28,8 +28,8 @@
 				debugger;
 				if (!result.isError) {
 					var url = '/Account/Login';
-					newSuccessAlert(result.msg, url);
-					location.href = result.redirectUrl;
+					successAlertWithRedirect(result.msg, url);
+					
 				}
 				else {
 					errorAlert(result.msg);
@@ -43,29 +43,94 @@
     }
 }
 
-
-
 function login() {
+  debugger;
+   var data = {};
+   data.Email = $('#email').val();
+   data.Password = $('#password').val();
+   let loginDetails = JSON.stringify(data);
+	$.ajax({
+		type: 'Post',
+		dataType: 'Json',
+		url: '/Account/Login',
+		data:
+		{
+			loginDetails: loginDetails,
+		},
+		success: function (result) {
+			debugger;
+			if (!result.isError) {
+				var url = '/Admin/Index';
+				successAlertWithRedirect(result.msg, url);
+			}
+			else {
+				errorAlert(result.msg);
+			}
+		},
+		error: function (ex) {
+			errorAlert("Error Occured,try again.");
+		}
+	});
+}
+
+
+function addCategory() {
 	debugger;
 	var data = {};
-	data.Email = $('#email').val();
-	data.Password = $('#password').val();
-	let loginDetails = JSON.stringify(data);
+	data.Name = $('#name').val();
+	data.Quantity = $('#quantity').val();
+	let category = JSON.stringify(data);
+	$.ajax({
+		type: 'Post',
+		dataType: 'Json',
+		url: '/Admin/AddCynlinderCategory',
+		data:
+		{
+			category: category,
+		},
+		success: function (result) {
+			debugger;
+			if (!result.isError) {
+				var url = '/Admin/CynlinderCategory';
+				successAlertWithRedirect(result.msg, url);
+			}
+			else {
+				errorAlert(result.msg);
+			}
+		},
+		error: function (ex) {
+			errorAlert("Error Occured,try again.");
+		}
+	});
+}
+
+
+function addCynlinder() {
+	debugger;
+	var data = {};
+	var file = document.getElementById("imageUrl").files;
+	data.Name = $('#name').val();
+	data.Price = $('#price').val();
+	let gasCynlinder = JSON.stringify(data);
+	const reader = new FileReader();
+	reader.readAsDataURL(file[0]);
+	var base64;
 	reader.onload = function () {
+		base64 = reader.result;
 		$.ajax({
 			type: 'Post',
 			dataType: 'Json',
-			url: '/Account/Login',
+			url: '/Admin/AddCynlinder',
 			data:
 			{
-				loginDetails: loginDetails,
+				gasCynlinder: gasCynlinder,
+				base64: base64
 			},
 			success: function (result) {
 				debugger;
 				if (!result.isError) {
-					var url = '/Account/Login';
-					newSuccessAlert(result.msg, url);
-					location.href = result.redirectUrl;
+					var url = '/Admin/Cynlinder';
+					successAlertWithRedirect(result.msg, url);
 				}
 				else {
 					errorAlert(result.msg);
@@ -79,11 +144,5 @@ function login() {
 	}
 
 }
-
-
-
-
-
-
 
 

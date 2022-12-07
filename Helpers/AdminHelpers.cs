@@ -4,6 +4,7 @@ using GasPOS.Models;
 using GasPOS.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using System.Buffers.Text;
 
 namespace GasPOS.Helpers
@@ -74,7 +75,7 @@ namespace GasPOS.Helpers
             return cynlinderCategory;
         }
 
-        public bool AddCynlinder(CynlinderViewModel cynlinderViewModel)
+        public bool AddCynlinder(CynlinderViewModel cynlinderViewModel, string base64)
         {
             if (cynlinderViewModel != null)
             {
@@ -82,9 +83,11 @@ namespace GasPOS.Helpers
                 {
                     Name = cynlinderViewModel.Name,
                     Price = cynlinderViewModel.Price,
+                    CynlinderCategoryId = cynlinderViewModel.CynlinderCategoryId,
                     Active = true,
                     DateCreated = DateTime.Now,
                     Deleted = false,
+                    ImageUrl = base64,
                 };
                 _context.Cynlinders.Add(cynlinders);
                 _context.SaveChanges();
@@ -132,6 +135,62 @@ namespace GasPOS.Helpers
             }
             return cynlinder;
         }
+
+
+
+        //public List<CynlinderCategoryViewModel> ListOfCynlinderCategory()
+        //{
+        //    var listOfCynlinderCategory = new List<CynlinderCategoryViewModel>();
+        //    var categorys = _context.CynlinderCategories.Where(u => u.Id != 0 && !u.Deleted).ToList();
+        //    if (categorys.Count() > 0)
+        //    {
+        //        foreach(var category in categorys)
+        //        {
+        //            var categoryViewModel = new CynlinderCategoryViewModel()
+        //            {
+        //                Id = category.Id,
+        //                Name = category.Name,
+        //            };
+        //            listOfCynlinderCategory.Add(categoryViewModel);
+        //        }
+        //        return listOfCynlinderCategory;
+        //    }
+        //    return listOfCynlinderCategory;
+        //}
+
+
+
+
+        public async Task<List<CynlinderCategory>> GetCynlinderCategory()
+        {
+            try
+            {
+                var common = new CynlinderCategory()
+                {
+                    Id = 0,
+                    Name = "___Select___"
+                };
+                var listOfCynlinderCategorys = await _context.CynlinderCategories.Where(a => a.Id != 0 && !a.Deleted).OrderBy(m => m.Name).ToListAsync();
+
+                listOfCynlinderCategorys.Insert(0, common);
+                return listOfCynlinderCategorys;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
+
+
+
+
+
+
+
 
 
 

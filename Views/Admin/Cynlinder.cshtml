@@ -7,12 +7,23 @@
 
 <main id="main" class="main">
 
-        <div class="row">
+  <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-12">
+                <div class="col-auto float-right ml-auto offset-5">
+                    <a href="#" class="btn rounded-pill text-white offset-5" data-bs-toggle="modal" data-bs-target="#smallModal" style="background-color: #012970;">
+                        Add Cynlinder
+                    </a>
+                </div>
+                <h2 class="text-white text-center py-2" style="margin-top:10px; background-color:#012970;">CYNLINDER</h2>
+            </div>
+
 
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Radar Chart</h5>
 
                         @if (Model != null && Model.Count() > 0)
                         {
@@ -41,4 +52,52 @@
             </div>
 
         </div>
+
+  </div>
+
+
+    <div class="modal fade" id="smallModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"> CYNLINDER  </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label>Gas Name</label>
+                        <input class="form-control" type="text" id="name" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gas Price</label>
+                        <input class="form-control" type="text" id="price" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Cynlinder Category</label>
+                        <select asp-items="@(new SelectList(@ViewBag.CynlinderCategory,"Id", "Name"))" class="form-control" id="CynlinderCategoryId" type="text">select CynlinderCategory</select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gas Image</label>
+                        <input class="form-control" type="file" name="ImageUrl" id="imageUrl" />
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+                        <button type="button" class="btn btn-primary" onclick="addCynlinder()">Add Cynlinder</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
 </main>
