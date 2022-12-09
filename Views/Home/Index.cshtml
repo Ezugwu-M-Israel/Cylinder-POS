@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<GasPOS.ViewModel.CynlinderViewModel>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -93,72 +93,54 @@
         <div class="container" data-aos="fade-up">
 
             <div class="section-header">
-                <span>Our Services</span>
-                <h2>Our Services</h2>
+                <span>Cynlinder</span>
+                <h2>Cynlinder</h2>
 
             </div>
 
             <div class="row gy-4">
 
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+@*              <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="card">
                         <div class="card-img">
+                            <img src="~/niceadmin/assets/img/3-kg-cylinders.png" alt="" class="img-fluid" style="width:100%; height:290px;" />
                             <img src="~/logis/assets/img/storage-service.jpg" alt="" class="img-fluid" />
                         </div>
                         <h3><a href="service-details.html" class="stretched-link">Storage</a></h3>
                         <p>Cumque eos in qui numquam. Aut aspernatur perferendis sed atque quia voluptas quisquam repellendus temporibus itaqueofficiis odit</p>
                     </div>
-                </div><!-- End Card Item -->
+                </div><!-- End Card Item -->*@
 
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card">
-                        <div class="card-img">
-                            <img src="~/logis/assets/img/logistics-service.jpg" alt="" class="img-fluid"/>
-                        </div>
-                        <h3><a href="service-details.html" class="stretched-link">Logistics</a></h3>
-                        <p>Asperiores provident dolor accusamus pariatur dolore nam id audantium ut et iure incidunt molestiae dolor ipsam ducimus occaecati nisi</p>
-                    </div>
-                </div><!-- End Card Item -->
 
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card">
-                        <div class="card-img">
-                            <img src="~/logis/assets/img/cargo-service.jpg" alt="" class="img-fluid"/>
-                        </div>
-                        <h3><a href="service-details.html" class="stretched-link">Cargo</a></h3>
-                        <p>Dicta quam similique quia architecto eos nisi aut ratione aut ipsum reiciendis sit doloremque oluptatem aut et molestiae ut et nihil</p>
-                    </div>
-                </div><!-- End Card Item -->
 
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                    <div class="card">
-                        <div class="card-img">
-                            <img src="~/logis/assets/img/trucking-service.jpg" alt="" class="img-fluid"/>
-                        </div>
-                        <h3><a href="service-details.html" class="stretched-link">Trucking</a></h3>
-                        <p>Dicta quam similique quia architecto eos nisi aut ratione aut ipsum reiciendis sit doloremque oluptatem aut et molestiae ut et nihil</p>
-                    </div>
-                </div><!-- End Card Item -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        @if (Model != null && Model.Count() > 0)
+                        {
+                            @foreach (var gas in Model)
+                            {
+                                <div class="card col-3 m-1" style="margin-top:95px; background-color: #f6f9ff;">
+                                    <img src="@gas.ImageUrl" alt="John" style="width:100%; height:190px;" />
+                                    <h1 class="text-dark text-center">@gas.Name</h1>
+                                    <p class="text-dark text-center">@gas.Price</p>
+                                    <button type="button" class="rounded-pill">BUY</button>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="text-center">
+                                <h1> No record find </h1>
+                            </div>
+                        }
 
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-                    <div class="card">
-                        <div class="card-img">
-                            <img src="~/logis/assets/img/packaging-service.jpg" alt="" class="img-fluid"/>
-                        </div>
-                        <h3><a href="service-details.html" class="stretched-link">Packaging</a></h3>
-                        <p>Illo consequuntur quisquam delectus praesentium modi dignissimos facere vel cum onsequuntur maiores beatae consequatur magni voluptates</p>
-                    </div>
-                </div><!-- End Card Item -->
+                </div>
+                    
 
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
-                    <div class="card">
-                        <div class="card-img">
-                            <img src="~/logis/assets/img/warehousing-service.jpg" alt="" class="img-fluid"/>
-                        </div>
-                        <h3><a href="service-details.html" class="stretched-link">Warehousing</a></h3>
-                        <p>Quas assumenda non occaecati molestiae. In aut earum sed natus eatae in vero. Ab modi quisquam aut nostrum unde et qui est non quo nulla</p>
-                    </div>
-                </div><!-- End Card Item -->
+
+
+
+
+
 
             </div>
 
@@ -299,7 +281,7 @@
         </div>
     </section><!-- End Testimonials Section -->
     <!-- ======= Frequently Asked Questions Section ======= -->
-    <section id="faq" class="faq">
+  @*  <section id="faq" class="faq">
         <div class="container" data-aos="fade-up">
 
             <div class="section-header">
@@ -390,6 +372,6 @@
             </div>
 
         </div>
-    </section><!-- End Frequently Asked Questions Section -->
+    </section><!-- End Frequently Asked Questions Section -->*@
 
 </main><!-- End #main -->
