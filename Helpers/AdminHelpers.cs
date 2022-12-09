@@ -77,23 +77,32 @@ namespace GasPOS.Helpers
 
         public bool AddCynlinder(CynlinderViewModel cynlinderViewModel, string base64)
         {
-            if (cynlinderViewModel != null)
+            try
             {
-                var cynlinders = new Cynlinder()
+                if (cynlinderViewModel != null)
                 {
-                    Name = cynlinderViewModel.Name,
-                    Price = cynlinderViewModel.Price,
-                    CynlinderCategoryId = cynlinderViewModel.CynlinderCategoryId,
-                    Active = true,
-                    DateCreated = DateTime.Now,
-                    Deleted = false,
-                    ImageUrl = base64,
-                };
-                _context.Cynlinders.Add(cynlinders);
-                _context.SaveChanges();
-                return true;
+                    var cynlinders = new Cynlinder()
+                    {
+                        Name = cynlinderViewModel.Name,
+                        Price = cynlinderViewModel.Price,
+                        CynlinderCategoryId = cynlinderViewModel.CynlinderCategoryId,
+                        Active = true,
+                        DateCreated = DateTime.Now,
+                        Deleted = false,
+                        ImageUrl = base64,
+                    };
+                    _context.Add(cynlinders);
+                    _context.SaveChanges();
+                    return true;
+                }
+                return false;
             }
-            return false;
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            
         }
 
         public List<CynlinderViewModel> ListOfCynlinder()
@@ -110,6 +119,7 @@ namespace GasPOS.Helpers
                         Active = true,
                         Deleted = lists.Deleted,
                         DateCreated = DateTime.Now,
+                        ImageUrl = lists.ImageUrl,
                         Id = lists.Id,
                         Price = lists.Price,
                     };
@@ -129,7 +139,6 @@ namespace GasPOS.Helpers
                 if (category != null)
                 {
                     return category;
-
                 }
                 return cynlinder;
             }
@@ -194,5 +203,15 @@ namespace GasPOS.Helpers
 
 
 
+
+
+
+
+
+
     }
+
+
+
+
 }

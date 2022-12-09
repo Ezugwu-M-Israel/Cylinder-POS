@@ -43,6 +43,52 @@
     }
 }
 
+function registerAdmin() {
+	debugger;
+	var data = {};
+	var file = document.getElementById("picture").files;
+	data.FirstName = $('#firstName').val();
+	data.LastName = $('#lastName').val();
+	data.MiddleName = $('#middleName').val();
+	data.Address = $('#address').val();
+	data.Email = $('#email').val();
+	data.Password = $('#password').val();
+	data.ConfirmPassword = $('#confirmPassword').val();
+	let adminDetails = JSON.stringify(data);
+	const reader = new FileReader();
+	reader.readAsDataURL(file[0]);
+	var base64;
+	reader.onload = function () {
+		base64 = reader.result;
+		$.ajax({
+			type: 'Post',
+			dataType: 'Json',
+			url: '/Account/AdminRegister',
+			data:
+			{
+				adminDetails: adminDetails,
+				base64: base64
+			},
+			success: function (result) {
+				debugger;
+				if (!result.isError) {
+					var url = '/Account/Login';
+					successAlertWithRedirect(result.msg, url);
+
+				}
+				else {
+					errorAlert(result.msg);
+				}
+			},
+			error: function (ex) {
+				errorAlert("Error Occured,try again.");
+			}
+		});
+
+	}
+}
+
+
 function login() {
   debugger;
    var data = {};
@@ -60,8 +106,7 @@ function login() {
 		success: function (result) {
 			debugger;
 			if (!result.isError) {
-				var url = '/Admin/Index';
-				successAlertWithRedirect(result.msg, url);
+				successAlertWithRedirect(result.msg, result.url);
 			}
 			else {
 				errorAlert(result.msg);
@@ -72,6 +117,7 @@ function login() {
 		}
 	});
 }
+
 
 
 function addCategory() {
@@ -111,6 +157,7 @@ function addCynlinder() {
 	var file = document.getElementById("imageUrl").files;
 	data.Name = $('#name').val();
 	data.Price = $('#price').val();
+	data.CynlinderCategoryId = $('#cynlinderCategoryId').val();
 	let gasCynlinder = JSON.stringify(data);
 	const reader = new FileReader();
 	reader.readAsDataURL(file[0]);
@@ -144,5 +191,21 @@ function addCynlinder() {
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

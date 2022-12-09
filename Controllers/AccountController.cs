@@ -61,10 +61,10 @@ namespace GasPOS.Controllers
                     {
                         return Json(new { isError = true, msg = "Password and Confirm Password must match" });
                     }
-                    var registerUser = await _userHelper.UserRegistertion(applicationUserViewModel, base64).ConfigureAwait(false);
-                    if (registerUser != null)
+                    var createUser = await _userHelper.UserRegistertion(applicationUserViewModel, base64).ConfigureAwait(false);
+                    if (createUser != null)
                     {
-                        await _userManager.AddToRoleAsync(registerUser, "Admin");
+                        await _userManager.AddToRoleAsync(createUser, "User");
                         return Json(new { isError = false, msg = "Register Successfully" });
                     }
                 }
@@ -104,23 +104,19 @@ namespace GasPOS.Controllers
                 var existing = _userManager.Users.Where(u => u.UserName == applicationUserViewModel.Email).FirstOrDefault();
                 if (existing != null)
                 {
-                    var PasswordSigin =await _signInManager.PasswordSignInAsync(applicationUserViewModel.Email, applicationUserViewModel.Password, true, false).ConfigureAwait(false);
+                    var PasswordSigin = await _signInManager.PasswordSignInAsync(applicationUserViewModel.Email, applicationUserViewModel.Password, true, false).ConfigureAwait(false);
                     if (PasswordSigin.Succeeded)
                     {
-                        var userRole = _userManager.IsInRoleAsync(existing, "Admin").Result;
-                        if (userRole)
+                        var userRole = _userHelper.GetUserDashboardPage(existing);
+                        if (userRole != null)
                         {
-                            return Json(new { isError = false, msg = "Login Successfully" });
+                            return Json(new { isError = false, msg = "Login Successfully", url = userRole });
 
-                            //TempData["success"] = "Successfully!";
-                            //return RedirectToAction("AdminDashboard", "Admin");
                         }
                         else
                         {
                             return Json(new { isError = false, msg = "Login Successfully" });
-                            //TempData["success"] = "Successfully!";
-                            //, redirectUrl = "/Home/Index"
-                            //return RedirectToAction("Index", "Home");
+
                         }
                     }
 
@@ -134,10 +130,55 @@ namespace GasPOS.Controllers
             return Json(new { isError = false, msg = "Login was Failed!" });
         }
 
+        [HttpGet]
+        public IActionResult AdminRegister()
+        {
+            return View();
+        }
 
-
-
-
+        [HttpPost]
+        public async Task<JsonResult> AdminRegister(string adminDetails, string base64)
+        {
+            if (adminDetails != null)
+            {
+                var applicationUserViewModel = JsonConvert.DeserializeObject<ApplicationUserViewModel>(adminDetails);
+                if (applicationUserViewModel != null)
+                {
+                    var user = _userHelper.FindByEmail(applicationUserViewModel.Email);
+                    if (user != null)
+                    {
+                        return Json(new { isError = true, msg = "Please A user with this email already exist" });
+                    }
+                    if (applicationUserViewModel.FirstName == null)
+                    {
+                        return Json(new { isError = true, msg = "Please Enter Your FirstName" });
+                    }
+                    if (applicationUserViewModel.MiddleName == null)
+                    {
+                        return Json(new { isError = true, msg = "Please Enter Your MiddleName" });
+                    }
+                    if (applicationUserViewModel.LastName == null)
+                    {
+                        return Json(new { isError = true, msg = "Please Enter Your LastName" });
+                    }
+                    if (applicationUserViewModel.Address == null)
+                    {
+                        return Json(new { isError = true, msg = "Please Enter Your Address" });
+                    }
+                    if (applicationUserViewModel.Password != applicationUserViewModel.ConfirmPassword)
+                    {
+                        return Json(new { isError = true, msg = "Password and Confirm Password must match" });
+                    }
+                    var registerAdmin = await _userHelper.AdminRegistertion(applicationUserViewModel, base64).ConfigureAwait(false);
+                    if (registerAdmin != null)
+                    {
+                        await _userManager.AddToRoleAsync(registerAdmin, "Admin");
+                        return Json(new { isError = false, msg = "Register Successfully" });
+                    }
+                }
+            }
+            return Json(new { isError = false, msg = "Error Ocurred" });
+        }
 
 
 

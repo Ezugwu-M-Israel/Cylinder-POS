@@ -338,7 +338,7 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link " href="index.html">
+                <a class="nav-link" asp-controller="Admin" asp-action="Index">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
@@ -501,6 +501,13 @@
                     <span>Login</span>
                 </a>
             </li><!-- End Login Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-controller="Account" asp-action="LogOut">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>LogOut</span>
+                </a>
+            </li><!-- End LogOut Page Nav -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" >

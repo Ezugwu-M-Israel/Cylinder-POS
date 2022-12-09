@@ -1,0 +1,65 @@
+﻿@model GasPOS.ViewModel.CynlinderCategoryViewModel
+
+@{
+    ViewData["Title"] = "EditedCynlinderCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="container-fluid mb-3 mt-5 p-5">
+
+        <input id="Id" hidden value="@Model.Id" />
+
+        <div class="lay bg-light col-5 offset-3 pb-2 shadow-lg" style="border-radius:50px; margin-bottom:-18px;">
+            <div class="card-header header mb-3 text-white rounded-sm p-1"><h4 class="text-center text-uppercase header" style="background-color: #222756ff;">EDIT GAS</h4></div>
+
+            <div class="row justify-content-center">
+
+                <div class="col-11 pt-2">
+                    <div class="form-group">
+                        <input type="text" class="form-control" required  id="name" value="@Model.Name" placeholder="Gas Name">
+                    </div>
+                </div>
+
+
+                <div class="col-11 pt-2">
+                    <div class="form-group">
+                    <input type="tel" class="form-control" id="quantity" required value="@Model.Quantity" placeholder="Gas Price">
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+
+                    <div class="col-8 offset-2 row">
+
+                        <div class="col mt-2">
+                        <input onclick="editCynlinderCategory()" id="editId" type="submit" class="rounded-pill w-100 p-2 text-white" value="Update" style="background-color: #222756ff;" />
+                        </div>
+
+                        <div class="col mt-3">
+                            <a asp-action="CynlinderCategory" style="background-color: #222756ff;" class="rounded-pill text-center offset-3 px-5 py-2 text-white">
+                                Back
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+</div>

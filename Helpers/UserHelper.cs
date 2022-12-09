@@ -69,7 +69,56 @@ namespace GasPOS.Helpers
                 if (newresult.Succeeded)
                 {
                     return newAppUser;
+                }
+            }
+            return null;
+        }
 
+
+        public async Task<ApplicationUser> AdminRegistertion(ApplicationUserViewModel model, string base64)
+        {
+            try
+            {
+                if (model != null)
+                {
+                    var newModel = new ApplicationUser();
+                    {
+                        newModel.FirstName = model.FirstName;
+                        newModel.MiddleName = model.MiddleName;
+                        newModel.LastName = model.LastName;
+                        newModel.Address = model.Address;
+                        newModel.UserName = model.Email;
+                        newModel.Email = model.Email;
+                        newModel.DateRegistered= DateTime.Now;
+                        newModel.ProfilePicture = base64;
+                    }
+                    var abuchi = await _userManager.CreateAsync(newModel, model.Password);
+                    if (abuchi.Succeeded)
+                    {
+                        return newModel;
+                    }
+                }
+                return null;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public string GetUserDashboardPage(ApplicationUser userr)
+        {
+            var userRole = _userManager.GetRolesAsync(userr).Result.FirstOrDefault();
+            if (userRole != null)
+            {
+                if (userRole == "Admin")
+                {
+                    return "/Admin/Index";
+                }
+                else
+                {
+                    return "/Home/Index";
                 }
             }
             return null;
@@ -77,8 +126,66 @@ namespace GasPOS.Helpers
 
 
 
+        public async Task<bool> CheckIfUserIsAdmin(string username)
+        {
+            try
+            {
+                if (username == null)
+                {
+                    return false;
+                }
+                var currentUser = FindByUserNameAsync(username);
+                var userDetails = await _userManager.Users.Where(s => s.UserName == currentUser.Result.UserName)?.FirstOrDefaultAsync();
+                if (userDetails != null)
+                {
+                    var goAdmin = await _userManager.IsInRoleAsync(userDetails, "Admin");
+                    if (goAdmin)
+                    {
+                        return goAdmin;
+                    }
+                    else
+                    {
+                        return false;
+                    }
 
+                }
+                return false;
 
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+        public string GetRoleLayout(string username)
+        {
+            if (username == null)
+            {
+                return null;
+            }
+            var applicationUser = _userManager.Users.Where(u => u.UserName == username).FirstOrDefault();
+            var superAdmin = _userManager.IsInRoleAsync(applicationUser, "Admin").Result;
+            if (superAdmin)
+            {
+                return "~/Views/Shared/_AdminLayout.cshtml";
+            }
+            else if (!superAdmin)
+            {
+                var companyAdmin = _userManager.IsInRoleAsync(applicationUser, "Employee").Result;
+                if (companyAdmin)
+                {
+                    return "~/Views/Shared/_UserLayout.cshtml";
+                }
+                else
+                {
+                    var user = _userManager.IsInRoleAsync(applicationUser, "User").Result;
+                    return "~/Views/Shared/_Layout.cshtml";
+                }
+            }
+            return null;
+        }
 
 
 
