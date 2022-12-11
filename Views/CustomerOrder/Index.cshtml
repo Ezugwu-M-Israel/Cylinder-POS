@@ -1,0 +1,47 @@
+﻿@model IEnumerable<GasPOS.ViewModel.CynlinderViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+    <section id="service" class="services pt-0">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-header">
+                <span>List Of Cynlinder</span>
+                <h2>List Of Cynlinder</h2>
+
+            </div>
+
+            <div class="row gy-4">
+
+                @if (Model != null && Model.Count() > 0)
+                {
+                    @foreach (var gas in Model)
+                    {
+                        <div class="card col-3 pb-1" style="margin-top:95px; background-color: #f6f9ff;">
+                            <img src="@gas.ImageUrl" alt="John" style="width:100%; height:190px;" />
+                            <h1 class="text-dark text-center">@gas.Name</h1>
+                            <p class="text-dark text-center">@gas.Price</p>
+                            <div class="rounded-pill" style="background-color:#012970;">
+                                <a type="button" class="btn rounded-pill offset-5 text-white" asp-controller="CustomerOrder" asp-action="">BUY</a>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="text-center">
+                        <h1> No record find </h1>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </section><!-- End Services Section -->
+
+

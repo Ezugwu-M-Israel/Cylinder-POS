@@ -12,7 +12,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IUserHelper, UserHelper>();
 builder.Services.AddScoped<IAdminHelpers, AdminHelpers>();
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
-    builder.Configuration.GetConnectionString("GasPOS")));
+    builder.Configuration.GetConnectionString("GasPOSDB")));
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
     options.Password.RequireDigit = false;
