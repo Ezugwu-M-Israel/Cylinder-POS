@@ -1,0 +1,97 @@
+﻿@model GasPOS.ViewModel.CynlinderViewModel
+@{
+    ViewData["Title"] = "GetCynlinderByCynlinderId";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container">
+
+    <div class="row mt-3">
+        <div class="col-lg-6">
+            <img src="@Model.ImageUrl" class="img-fluid" alt="" style="width:100%; height:80%;"/>
+        </div>
+
+
+        <div class="col-lg-6 pt-4 pt-lg-0 content">
+            <h3 class="text-white text-center py-2 rounded-pill" style="margin-top:30px; background-color:#012970;">Cynlinder Details</h3>
+
+            <div class="row mt-3">
+                <div class="col-3">
+                     <h3 class="text-flex">Name:</h3>
+                </div>
+                <div class ="col-3">
+                    <input type="tel"  required disabled class="text-center offset-3">@Model.Name
+               </div>
+            </div>
+
+             <div class="row mt-3">
+               <div class="col-3">
+                   <p class="text-flex">Price:</p>
+               </div>
+               <div class="col-3">
+
+                    <div class="col-3">
+                        <p class="text-flex">Price:</p>
+                    </div>
+                    <div class="col-3">
+                        <input type="text" class="form-control" value="@Model.Price" id="price" disabled required>@Model.Price
+                    </div>
+               </div>
+             </div>
+
+             <div class="row mt-3">
+               <div class="col-3">
+                    <p class="text-flex">CynlinderCategory:</p>
+               </div>
+               <div class="col-3">
+                    <input type="tel" required disabled class="text-center offset-3">@Model.CynlinderCategoryName
+               </div>
+             </div>
+
+            <div class="row mt-3">
+                <div class="col-3">
+                    <p class="text-flex">Quantity:</p>
+                </div>
+                <div class="col-3">
+                    <input type="tel" name="number" class="form-control" id="quantity" onchange="calculatPrice()" required>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-3">
+                    <p class="text-flex">Total Amount:</p>
+                </div>
+                <div class="col-3">
+                    <input type="tel" id="totalamount" required disabled>
+                </div>
+            </div>
+
+
+            
+           <div class="col-12 pt-5">
+                   <button class="btn btn-primary w-100 rounded-pill" type="submit">Order</button>
+           </div>
+
+        </div>
+    </div>
+</div><!-- End testimonial item -->
+
+
+<script>
+
+    function calculatPrice(){
+        debugger;
+        var price = $('#price').val();
+        var quantity = $('#quantity').val();
+        if(price != null && quantity != null){
+            var total = price * quantity;
+            $('#totalamount').val(total);
+          var yy =  $('#price').html($('input:text').val());
+        }
+
+
+
+    }
+</script>

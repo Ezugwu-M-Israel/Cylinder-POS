@@ -11,10 +11,8 @@
     <section id="service" class="services pt-0">
         <div class="container" data-aos="fade-up">
 
-            <div class="section-header">
-                <span>List Of Cynlinder</span>
-                <h2>List Of Cynlinder</h2>
-
+            <div class="col-12 section-header">
+               <h2 class="text-white text-center py-2 rounded-pill" style="margin-top:10px; background-color:#012970;">THIS IS THE LIST OF ALL CYNLINDER</h2>
             </div>
 
             <div class="row gy-4">
@@ -28,7 +26,7 @@
                             <h1 class="text-dark text-center">@gas.Name</h1>
                             <p class="text-dark text-center">@gas.Price</p>
                             <div class="rounded-pill" style="background-color:#012970;">
-                                <a type="button" class="btn rounded-pill offset-5 text-white" asp-controller="CustomerOrder" asp-action="">BUY</a>
+                            <a type="button" class="btn rounded-pill offset-5 text-white" asp-route-cynlinderId="@gas.Id" asp-controller="CustomerOrder" asp-action="GetCynlinderByCynlinderId">BUY</a>
                             </div>
                         </div>
                     }

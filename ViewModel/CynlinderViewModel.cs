@@ -13,9 +13,8 @@ namespace GasPOS.ViewModel
         public string? Name { get; set; }
         public string? Price { get; set; }
         public string? ImageUrl { get; set; }
-        public int? CynlinderCategoryId { get; set; }
-        [ForeignKey("CynlinderCategoryId")]
-        public virtual CynlinderCategory? CynlinderCategory { get; set; }
+        public string CynlinderCategoryName { get; set; }
+        public int CynlinderCategoryId { get; set; }
         public bool Active { get; set; }
         public bool Deleted { get; set; }
         public DateTime? DateCreated { get; set; }
