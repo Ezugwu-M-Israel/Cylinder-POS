@@ -59,7 +59,7 @@ namespace GasPOS.Helpers
             }
             return listOfCynlinderCategories;
         }
-        public CynlinderCategory GetCynliderByCynliderId(int id)
+        public CynlinderCategory GetCynliderCategoryByCynliderId(int id)
         {
             var cynlinderCategory = new CynlinderCategory();
             if (id != 0)
@@ -130,22 +130,28 @@ namespace GasPOS.Helpers
             return listOfCynlinder;
         }
 
-        public Cynlinder GetCynlinderByCynlinderId(int id)
+        public CynlinderViewModel GetCynlinderByCynlinderId(int id)
         {
-            var cynlinder = new Cynlinder();
+            
             if (id != 0)
             {
-                var category = _context.Cynlinders.Where(x => x.Id == id && x.Name != null).FirstOrDefault();
+                var category = _context.Cynlinders.Where(x => x.Id == id && x.Name != null).Include(x => x.CynlinderCategory).FirstOrDefault();
                 if (category != null)
                 {
-                    return category;
+                    var cynlinder = new CynlinderViewModel()
+                    {
+                        Id = category.Id,
+                        Name = category.Name,   
+                        Price = category.Price,
+                        CynlinderCategoryName = category.CynlinderCategory?.Name,
+                        DateCreated = category.DateCreated,
+                        ImageUrl = category.ImageUrl,
+                    };
+                    return cynlinder;
                 }
-                return cynlinder;
             }
-            return cynlinder;
+            return null;
         }
-
-
 
         //public List<CynlinderCategoryViewModel> ListOfCynlinderCategory()
         //{
@@ -166,9 +172,6 @@ namespace GasPOS.Helpers
         //    }
         //    return listOfCynlinderCategory;
         //}
-
-
-
 
         public async Task<List<CynlinderCategory>> GetCynlinderCategory()
         {
@@ -192,6 +195,36 @@ namespace GasPOS.Helpers
             }
         }
 
+        public bool Order (OrderViewModel orderViewModel)
+        {
+            try
+            {
+                if (orderViewModel != null)
+                {
+                    var order = new Order()
+                    {
+                        CustomerName = orderViewModel.CustomerName,
+                        CustomerPhoneNumber = orderViewModel.CustomerPhoneNumber,
+                        ProductName = orderViewModel.ProductName,
+                        AmountPaid = orderViewModel.AmountPaid,
+                        QuantityBought =orderViewModel.QuantityBought,
+                        DateCreated = DateTime.Now,
+                        Active = true,
+                        Deleted = false,
+                    };
+                    _context.Add(order);
+                    _context.SaveChanges();
+                    return true;
+                }
+                return false;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
 
 
 
@@ -204,14 +237,34 @@ namespace GasPOS.Helpers
 
 
 
+
+        public List<OrderViewModel> ListOfOrder()
+        {
+            var listOfOrder = new List<OrderViewModel>();
+            var list = _context.Orders.Where(o => o.Id != 0).ToList();
+            if (list.Count > 0)
+            {
+                foreach (var lists in list)
+                {
+                    var order = new OrderViewModel()
+                    {
+                        CustomerName = lists.CustomerName,
+                        AmountPaid = lists.AmountPaid,
+                        CustomerPhoneNumber = lists.CustomerPhoneNumber,
+                        ProductName = lists.ProductName,
+                        QuantityBought = lists.QuantityBought,
+                    };
+                    listOfOrder.Add(order); 
+                }
+                return listOfOrder;
+            }
+            return listOfOrder;
+        }
 
 
 
 
 
     }
-
-
-
 
 }

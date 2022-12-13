@@ -99,7 +99,16 @@ namespace GasPOS.Controllers
         }
 
 
-
+        [HttpGet]
+        public  IActionResult AdminTable()
+        {
+            var list = _adminHelpers.ListOfOrder();
+            if (list != null)
+            {
+                return View(list);
+            }
+            return View(list);
+        }
 
 
 

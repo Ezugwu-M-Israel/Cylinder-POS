@@ -1,0 +1,51 @@
+﻿@model IEnumerable<GasPOS.ViewModel.OrderViewModel>
+
+@{
+    ViewData["Title"] = "AdminTable";
+     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<main id="main" class="main">
+
+     <div class="container-fluid">
+          <div class="row pt-4 mt-5">
+
+                <div class="col-12">
+                    <h2 class="text-white text-center py-2 rounded-pill" style="margin-top:10px; background-color:#012970;">ORDER TABLE </h2>
+                </div>
+
+            @if (Model.Count() > 0)
+            {
+                <table class="table table-striped table-bordered" style="width:100%">
+
+                    <thead>
+                        <tr>
+                            <th class="text-center">ProductName</th>
+                            <th class="text-center">CustomerName</th>
+                            <th class="text-center">CustomerPhoneNumber</th>
+                            <th class="text-center">QuantityBought</th>
+                            <th class="text-center">AmountPaid</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var gas in Model)
+                        {
+                                <tr>
+                                    <td width="5%" class="text-center">@gas.ProductName</td>
+                                    <td width="5%" class="text-center">@gas.CustomerName</td>
+                                    <td width="5%" class="text-center">@gas.CustomerPhoneNumber</td>
+                                    <td width="5%" class="text-center">@gas.QuantityBought</td>
+                                    <td width="5%" class="text-center">@gas.AmountPaid</td>
+                                </tr>
+                        }
+                    </tbody>
+
+                </table>
+            }
+          </div>
+
+     </div>
+</main>

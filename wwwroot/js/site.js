@@ -197,9 +197,38 @@ function addCynlinder() {
 
 
 
-
-
-
+function customerOrder() {
+	debugger;
+	var data = {};
+	data.ProductName = $('#name').val();
+	data.QuantityBought = $('#quantity').val();
+	data.AmountPaid = $('#totalamount').val();
+	data.CustomerName = $('#customerName').val();
+	data.CustomerPhoneNumber = $('#customerPhoneNumber').val();
+	let orders = JSON.stringify(data);
+	$.ajax({
+		type: 'Post',
+		dataType: 'Json',
+		url: '/CustomerOrder/Ordes',
+		data:
+		{
+			orders: orders,
+		},
+		success: function (result) {
+			debugger;
+			if (!result.isError) {
+				var url = '/Home/Index';
+				successAlertWithRedirect(result.msg, url);
+			}
+			else {
+				errorAlert(result.msg);
+			}
+		},
+		error: function (ex) {
+			errorAlert("Error Occured,try again.");
+		}
+	});
+}
 
 
 

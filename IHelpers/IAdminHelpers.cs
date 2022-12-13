@@ -12,5 +12,7 @@ namespace GasPOS.IHelpers
         CynlinderViewModel GetCynlinderByCynlinderId(int id);
         List<CynlinderViewModel> ListOfCynlinder();
         Task<List<CynlinderCategory>> GetCynlinderCategory();
+        bool Order(OrderViewModel orderViewModel);
+        List<OrderViewModel> ListOfOrder();
     }
 }

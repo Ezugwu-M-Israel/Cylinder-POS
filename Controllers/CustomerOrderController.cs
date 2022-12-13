@@ -1,8 +1,10 @@
 ﻿using GasPOS.Db;
 using GasPOS.IHelpers;
 using GasPOS.Models;
+using GasPOS.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace GasPOS.Controllers
 {
@@ -35,7 +37,37 @@ namespace GasPOS.Controllers
 
 
 
+        [HttpGet]
+        public IActionResult GetCynlinderByCynlinderId(int cynlinderId)
+        {
+            var customer = _adminHelpers.GetCynlinderByCynlinderId(cynlinderId);
+            if (customer != null)
+            {
+                return View(customer);
+            }
+            return View(customer);
+        }
 
+
+        [HttpPost]
+        public JsonResult Ordes(string orders)
+        {
+            if (orders != null)
+            {
+                var orderViewModel = JsonConvert.DeserializeObject<OrderViewModel>(orders);
+                if (orderViewModel != null)
+                {
+                    var order = _adminHelpers.Order(orderViewModel);
+                    if (order)
+                    {
+                        return Json(new { isError = false, msg = "You Have Successfully Place An Order" });
+                    }
+                    return Json(new { isError = true, msg = "Unable to Place An Order" });
+                }
+            }
+
+            return Json(new { isError = true, msg = "Error Ocurred" });
+        }
 
 
 
