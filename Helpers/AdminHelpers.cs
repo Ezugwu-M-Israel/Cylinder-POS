@@ -226,18 +226,6 @@ namespace GasPOS.Helpers
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
         public List<OrderViewModel> ListOfOrder()
         {
             var listOfOrder = new List<OrderViewModel>();
@@ -260,9 +248,33 @@ namespace GasPOS.Helpers
             }
             return listOfOrder;
         }
+        public string UpdateCynlinderCategoryInfo(CynlinderCategoryViewModel cynlinderCategoryViewModel)
+        {
+            try
+            {
+                if (cynlinderCategoryViewModel != null)
+                {
+                    var cynlinderCategoryDetails = _context.CynlinderCategories.Where(x => x.Id == cynlinderCategoryViewModel.Id && x.Active && !x.Deleted).FirstOrDefault();
+                    if (cynlinderCategoryDetails != null)
+                    {
+                        cynlinderCategoryDetails.Name = cynlinderCategoryViewModel.Name;
+                        cynlinderCategoryDetails.Quantity = cynlinderCategoryViewModel.Quantity;
+                        cynlinderCategoryDetails.Active = true;
 
+                        _context.Update(cynlinderCategoryDetails);
+                        _context.SaveChanges();
+                        return "CynlinderCategory Has  Successfully Updated";    
+                    }
+                    return null;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
-
+        }
 
 
     }

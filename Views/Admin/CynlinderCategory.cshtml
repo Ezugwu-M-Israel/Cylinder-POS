@@ -40,10 +40,10 @@
                                 <td width="5%" class="text-center">@gas.Quantity</td>
                                 <td width="5%" class="text-center">
                                     <div class="w-10 btn-group" role="group">
-                                        <a asp-asp-controller="Admin" asp-action="EditCynlinderCategory" class="mx-5 text-dark">
+                                        <a onclick="cynlinderCategoryToBeEdited('@gas.Id')" class="mx-5 text-dark" data-bs-toggle="modal" data-bs-target="#smallModals">
                                             <i class="bi bi-pencil-square"></i>EDIT
                                         </a>
-                                        <a asp-asp-controller="Admin" asp-action="DeleteCynlinderCategory" class="mx-5 text-center text-dark">
+                                        <a onclick="cynlinderCategoryToBeDeleted('@gas.Id')" class="mx-5 text-center text-dark" data-bs-toggle="modal" data-bs-target="#smallModalss">
                                             <i class="bi bi-trash-fill"></i>DELETE
                                         </a>
                                     </div>
@@ -58,8 +58,6 @@
       </div>
 
     </div>
-
-
 
 
 
@@ -79,7 +77,7 @@
 
                     <div class="form-group">
                         <label>Gas Quantity</label>
-                        <input class="form-control" type="text" id="quantity"/>
+                        <input class="form-control" type="tel" id="quantity"/>
                     </div>
 
                 <div class="modal-footer">
@@ -90,7 +88,81 @@
             </div>
         </div>
     </div>
-    
+
+
+
+
+
+    <div class="modal fade" id="smallModals" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"> EDIT CYNLINDER CATEGORY </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <input class="form-control" type="text" hidden id="editId" />
+
+                    <div class="form-group">
+                        <label>Gas Name</label>
+                        <input class="form-control" type="text" id="editName" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gas Quantity</label>
+                        <input class="form-control" type="tel" id="editQuantity" />
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+                        <button type="button" class="btn btn-primary" onclick="editCynlinderCategory()">Update</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+     <div class="modal fade" id="smallModalss" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"> DELETE CYNLINDER CATEGORY </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <input class="form-control" type="text" hidden id="deleteId" />
+
+                    <div class="form-group">
+                        <label>Gas Name</label>
+                        <input class="form-control" type="text" id="deleteName" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gas Quantity</label>
+                        <input class="form-control" type="tel" id="deleteQuantity" />
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+                        <button type="button" class="btn btn-primary" onclick="deleteCynlinderCategory()">Delete</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
 </main>
 
  

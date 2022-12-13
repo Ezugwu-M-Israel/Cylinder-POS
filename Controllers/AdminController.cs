@@ -33,7 +33,16 @@ namespace GasPOS.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var cynlinder = _adminHelpers.GetListOfCynlinderCategories().Count;
+            var list = _adminHelpers.ListOfOrder();
+            var cynlinderInt = _adminHelpers.ListOfCynlinder().Count;
+            var indexPage = new AdminViewModel()
+            {
+                NumberOfCynlinder = cynlinderInt,
+                NumberOfCynlinderCategory = cynlinder,
+                Orders = list,
+            };
+            return View(indexPage);
         }
 
         [HttpGet]
@@ -111,13 +120,96 @@ namespace GasPOS.Controllers
         }
 
 
+        [HttpGet]
+        public JsonResult EditedCynlinderCategory(int cynlinderCategoryId)
+        {
+            try
+            {
+                if (cynlinderCategoryId > 0)
+                {
+                    var cynlin = _context.CynlinderCategories.Where(x => x.Id == cynlinderCategoryId && x.Active && !x.Deleted).FirstOrDefault();
+                    if (cynlin != null)
+                    {
+                        return Json(new { isError = false, data = cynlin });
+                    }
+                    return Json(new { isError = true, msg = "Could not Edit CynlinderCategory." });
+                }
+                else
+                {
+                    return Json(new { isError = true, msg = "Could not Edit CynlinderCategory." });
+                }
+            }
+            catch (Exception exp)
+            {
+
+                throw exp;
+            }
+        }
+
+
+        [HttpPost]
+        public JsonResult EditedCynlinderCategory(string cynlinderss)
+        {
+            try
+            {
+                if (cynlinderss != null)
+                {
+                    var editCynlinderCategory = JsonConvert.DeserializeObject<CynlinderCategoryViewModel>(cynlinderss);
+                    if (editCynlinderCategory != null)
+                    {
+                        var updateCynlinderCategroyDetails = _adminHelpers.UpdateCynlinderCategoryInfo(editCynlinderCategory);
+                        if (updateCynlinderCategroyDetails != null)
+                        {
+                            return Json(new { isError = false, msg = "CynlinderCategory Edited Successfully." });
+                        }
+                    }
+                    return Json(new { isError = true, msg = "Something went wrong." });
+                }
+                return Json(new { isError = true, msg = "Something went wrong." });
+
+            }
+            catch (Exception exp)
+            {
+                throw exp;
+            }
+        }
 
 
 
+        [HttpGet]
+        public IActionResult DeleteCynlinderCategory()
+        {
+            return View();
+        }
 
 
+        [HttpPost]
+        public JsonResult DeleteCynlinderCategory(int categoryId)
+        {
+            try
+            {
 
+                if (categoryId != 0)
+                {
+                    var cynlinderCategoryToBeDeleted = _context.CynlinderCategories.Where(x => x.Id == categoryId && x.Deleted == false).FirstOrDefault();
+                    if (cynlinderCategoryToBeDeleted != null)
+                    {
+                        cynlinderCategoryToBeDeleted.Deleted = true;
+                        _context.CynlinderCategories.Update(cynlinderCategoryToBeDeleted);
+                        _context.SaveChanges();
+                        return Json(new { isError = false, msg = "CynlinderCategory Deleted Successfully." });
+                    }
+                    return Json(new { isError = true, msg = "Could not Delete CynlinderCategory." });
+                }
+                return Json(new { isError = true, msg = "Failed please try again." });
 
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
 
 
 

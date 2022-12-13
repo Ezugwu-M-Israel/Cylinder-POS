@@ -95,8 +95,6 @@
         }
     </script>
 
-
-
 </head>
 <body>
 
@@ -108,7 +106,7 @@
             <a href="index.html" class="logo d-flex align-items-center">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="assets/img/logo.png" alt=""> -->
-                <h1>Logis</h1>
+                <h1>Gas Home</h1>
             </a>
 
             <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
@@ -120,13 +118,13 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li><a asp-controller="Account" asp-action="LogOut">LogOut</a></li>
+                        <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
                     }
                     else
                     {
                         <li><a asp-controller="Account" asp-action="Register">Register</a></li>
                         <li><a asp-controller="Account" asp-action="Login">Login</a></li>
-                        <li><a href="pricing.html">Pricing</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+
                     }
 
                 </ul>
@@ -142,9 +140,8 @@
         <div class="container">
             <div class="row gy-4 d-flex justify-content-between">
                 <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                    <h2 data-aos="fade-up">Your Lightning Fast Delivery Partner</h2>
-                    <p data-aos="fade-up" data-aos-delay="100">Facere distinctio molestiae nisi fugit tenetur repellat non praesentium nesciunt optio quis sit odio nemo quisquam. eius quos reiciendis eum vel eum voluptatem eum maiores eaque id optio ullam occaecati odio est possimus vel reprehenderit</p>
-
+                    <h2 data-aos="fade-up">Welcome To Gas Home Delivery Services</h2>
+                    <p data-aos="fade-up" data-aos-delay="100">Gases are the most common state of matter in the universe, and they make up 99% of our atmosphere. Gases consist of a collection of particles that have a low density, allowing them to take up a large volume. gases are also much less dense than solids or liquids, meaning they take up less space.</p>
                     <form action="#" class="form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
                         <input type="text" class="form-control" placeholder="ZIP code or CitY">
                         <button type="submit" class="btn btn-primary">Search</button>
@@ -201,17 +198,16 @@
 
 
 
-
     <!-- ======= Footer ======= -->
-    <footer id="footer" class="footer">
+    <footer id="footer" class="footer" >
 
         <div class="container">
             <div class="row gy-4">
                 <div class="col-lg-5 col-md-12 footer-info">
                     <a href="index.html" class="logo d-flex align-items-center">
-                        <span>Logis</span>
+                        <span>Gas Hom</span>
                     </a>
-                    <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+                    <p>Gases are the most common state of matter in the universe.</p>
                     <div class="social-links d-flex mt-4">
                         <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                         <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -272,6 +268,10 @@
 
     </footer><!-- End Footer -->
     <!-- End Footer -->
+
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <div id="preloader"></div>
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

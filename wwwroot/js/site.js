@@ -88,7 +88,6 @@ function registerAdmin() {
 	}
 }
 
-
 function login() {
   debugger;
    var data = {};
@@ -117,8 +116,6 @@ function login() {
 		}
 	});
 }
-
-
 
 function addCategory() {
 	debugger;
@@ -149,7 +146,6 @@ function addCategory() {
 		}
 	});
 }
-
 
 function addCynlinder() {
 	debugger;
@@ -192,11 +188,6 @@ function addCynlinder() {
 
 }
 
-
-
-
-
-
 function customerOrder() {
 	debugger;
 	var data = {};
@@ -229,6 +220,129 @@ function customerOrder() {
 		}
 	});
 }
+
+function cynlinderCategoryToBeEdited(id) {
+	debugger;
+	$.ajax({
+		type: 'GET',
+		url: '/Admin/EditedCynlinderCategory', // we are calling json method
+		dataType: 'json',
+		data:
+		{
+			cynlinderCategoryId: id
+		},
+		success: function (data) {
+			debugger;
+			if (!data.isError) {
+				$('#editName').val(data.data.name);
+				$('#editQuantity').val(data.data.quantity);
+				$('#editId').val(data.data.id);
+			}
+		},
+		error: function (ex) {
+			"Something went wrong, contact support - " + errorAlert(ex);
+		}
+	});
+};
+
+function editCynlinderCategory() {
+
+	debugger;
+	var data = {};
+	data.Name = $("#editName").val();
+	data.Id = $("#editId").val();
+	data.Quantity = $("#editQuantity").val();
+	let cynlinderss = JSON.stringify(data);
+	debugger;
+	$.ajax({
+		type: 'POST',
+		url: '/Admin/EditedCynlinderCategory', // we are calling json method,
+		dataType: 'json',
+		data:
+		{
+			cynlinderss: cynlinderss,
+		},
+		success: function (result) {
+			debugger;
+			if (!result.isError) {
+				var url = "/Admin/CynlinderCategory";
+				newSuccessAlert(result.msg, url);
+			}
+			else {
+				errorAlert(result.msg);
+			}
+		},
+		error: function (ex) {
+			"Something went wrong, contact support - " + errorAlert(ex);
+		}
+	});
+}
+
+
+
+
+function cynlinderCategoryToBeDeleted(id) {
+	debugger;
+	$("#deleteId").val(id);
+}
+
+function deleteCynlinderCategory() {
+	debugger;
+	var categoryDetails = {};
+	categoryDetails = $("#deleteId").val();
+	$.ajax({
+		type: 'Post',
+		url: "/Admin/DeleteCynlinderCategory",
+		dataType: 'Json',
+		data:
+		{
+			categoryId: categoryDetails
+		},
+		success: function (result) {
+			debugger;
+			if (!result.isError) {
+				debugger;
+				var url = "/Admin/CynlinderCategory";
+				newSuccessAlert(result.msg, url);
+
+			} else {
+				errorAlert(result.msg);
+			}
+		}
+	});
+}
+
+
+
+
+//function deleteCynlinderCategory() {
+//	var Id = $('#deleteId').val();
+//	debugger;
+//	$.ajax({
+//		type: 'Post',
+//		dataType: 'Json',
+//		url: '/Admin/DeleteCynlinderCategory',
+//		data: {
+//			Id: Id
+//		},
+//		success: function (result) {
+//			debugger;
+//			if (!result.isError) {
+//				var url = '/Admin/CynlinderCategory'
+//				successAlertWithRedirect(result.msg, url)
+//			}
+//			else {
+//				errorAlert(result.msg)
+//			}
+//		},
+//		error: function (ex) {
+//			errorAlert("Error occured try again");
+//		}
+//	})
+//}
+
+
+
 
 
 

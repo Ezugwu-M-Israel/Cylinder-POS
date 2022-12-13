@@ -22,10 +22,9 @@ namespace GasPOS.Controllers
             
         }
 
-
-
         public IActionResult Index()
         {
+            
             var topCynlinder = _adminHelpers.ListOfCynlinder().OrderByDescending(x => x.DateCreated).Take(8).ToList();
             return View(topCynlinder);
         }
