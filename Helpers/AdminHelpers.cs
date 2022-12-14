@@ -108,7 +108,7 @@ namespace GasPOS.Helpers
         public List<CynlinderViewModel> ListOfCynlinder()
         {
             var listOfCynlinder = new List<CynlinderViewModel>();
-            var list = _context.Cynlinders.Where(x => x.Id != 0).ToList();
+            var list = _context.Cynlinders.Where(x => x.Id != 0 && x.Active &&!x.Deleted).ToList();
             if (list.Count > 0)
             {
                 foreach (var lists in list)

@@ -195,6 +195,7 @@ namespace GasPOS.Controllers
                     if (cynlinderCategoryToBeDeleted != null)
                     {
                         cynlinderCategoryToBeDeleted.Deleted = true;
+                        cynlinderCategoryToBeDeleted.Active = false;
                         _context.CynlinderCategories.Update(cynlinderCategoryToBeDeleted);
                         _context.SaveChanges();
                         return Json(new { isError = false, msg = "CynlinderCategory Deleted Successfully." });
