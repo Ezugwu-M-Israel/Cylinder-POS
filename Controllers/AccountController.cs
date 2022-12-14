@@ -124,7 +124,7 @@ namespace GasPOS.Controllers
                 else
                 {
                     return Json(new { isError = false, msg = "Username does not Exist!" });
-                    
+
                 }
             }
             return Json(new { isError = false, msg = "Login was Failed!" });

@@ -114,11 +114,9 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a asp-controller="Home" asp-action="Index" class="active">Home</a></li>
-                    <li><a href="about.html">About</a></li>
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li><a asp-controller="Account" asp-action="LogOut">LogOut</a></li>
-                        <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
                     }
                     else
                     {
@@ -196,7 +194,7 @@
         </main>
     </div>
 
-
+    <br />
 
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer" >
