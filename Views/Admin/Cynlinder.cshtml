@@ -23,10 +23,30 @@
                     {
                         @foreach (var gas in Model)
                         {
-                            <div class="card col-3 m-1" style="margin-top:95px; background-color: #f6f9ff;">
+                            <div class="card col-4" style="margin-top:95px; background-color: #f6f9ff;">
                                 <img src="@gas.ImageUrl" alt="John" style="width:100%; height:190px;"/>
                                 <h1 class="text-dark text-center">@gas.Name</h1>
                                 <p class="text-dark text-center">@gas.Price</p>
+
+                                 <div class="row col-12">
+
+                                    <div class="col-4 mx-4 btn-group" role="group" style="margin-top:10px; background-color:#012970;">
+                                        <a onclick="cynlinderToBeEdited('@gas.Id')" class="mx-3 text-white" data-bs-toggle="modal" data-bs-target="#smallModals">
+                                            EDIT
+                                        </a>
+
+                                    </div>
+
+                                    <div class="col-4 mx-3 btn-group" role="group" style="margin-top:10px; background-color:#012970;">
+
+                                        <a onclick="cynlinderToBeDeleted('@gas.Id')" class=" text-center text-white" data-bs-toggle="modal" data-bs-target="#smallModalss">
+                                            DELETE
+                                        </a>
+                                    </div>
+
+
+                                 </div>
+
                             </div>
                         }
                     }
@@ -51,6 +71,8 @@
                 </div>
                 <div class="modal-body">
 
+                    <input class="form-control" type="text" hidden id="editId" />
+
                     <div class="form-group">
                         <label>Gas Name</label>
                         <input class="form-control" type="text" id="name" />
@@ -58,7 +80,7 @@
 
                     <div class="form-group">
                         <label>Gas Price</label>
-                        <input class="form-control" type="text" id="price" />
+                        <input class="form-control" type="number" id="price" />
                     </div>
 
                     <div class="form-group">
@@ -78,6 +100,77 @@
             </div>
         </div>
     </div>
+
+
+
+
+    <div class="modal fade" id="smallModals" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">EDIT CYNLINDER  </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <input class="form-control" type="text" hidden id="editId" />
+
+                    <div class="form-group">
+                        <label>Gas Name</label>
+                        <input class="form-control" type="text" id="editName" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gas Price</label>
+                        <input class="form-control" type="number" id="editPrice" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Cynlinder Category</label>
+                        <select asp-items="@(new SelectList(@ViewBag.CynlinderCategory,"Id", "Name"))" class="form-control" id="cynlinderCategoryId" type="text">select CynlinderCategory</select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gas Image</label>
+                        <input class="form-control" type="file" name="ImageUrl" id="imageUrl" />
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary w-100" onclick="editCynlinder()">EDIT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="smallModalss" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">DELETE CYNLINDER  </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                     <input class="form-control" type="text" hidden id="deleteDId" />
+
+                    <p><b>The You want To Delete Cynlinder </b></p>
+
+                    <div class="modal-footer">
+                         <button type="button" class="btn btn-primary roundded-pill w-100" onclick="deleteCynlinder()">YES</button>
+                    </div>
+                     
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+ 
+
 
 
 </main>

@@ -278,9 +278,6 @@ function editCynlinderCategory() {
 	});
 }
 
-
-
-
 function cynlinderCategoryToBeDeleted(id) {
 	debugger;
 	$("#deleteId").val(id);
@@ -313,8 +310,6 @@ function deleteCynlinderCategory() {
 }
 
 
-
-
 //function deleteCynlinderCategory() {
 //	var Id = $('#deleteId').val();
 //	debugger;
@@ -344,11 +339,101 @@ function deleteCynlinderCategory() {
 
 
 
+function cynlinderToBeEdited(id) {
+	debugger;
+	$.ajax({
+		type: 'GET',
+		url: '/Admin/EditedCategory', // we are calling json method
+		dataType: 'json',
+		data:
+		{
+			cynlinderId: id
+		},
+		success: function (data) {
+			debugger;
+			if (!data.isError) {
+				$('#editName').val(data.data.name);
+				$('#editPrice').val(data.data.price);
+				$('#cynlinderCategoryId').val(data.data.cynlinderCategoryId);
+				$('#editId').val(data.data.id);
+
+			}
+		},
+		error: function (ex) {
+			"Something went wrong, contact support - " + errorAlert(ex);
+		}
+	});
+};
+
+function editCynlinder() {
+
+	debugger;
+	var data = {};
+	data.Name = $("#editName").val();
+	data.CynlinderCategoryId = $('#cynlinderCategoryId').val();
+	data.Id = $("#editId").val();
+	data.Price = $("#editPrice").val();
+	let cynlindersss = JSON.stringify(data);
+	debugger;
+	$.ajax({
+		type: 'POST',
+		url: '/Admin/EditedCynlinders', // we are calling json method,
+		dataType: 'json',
+		data:
+		{
+			cynlindersss: cynlindersss,
+		},
+		success: function (result) {
+			debugger;
+			if (!result.isError) {
+				var url = "/Admin/Cynlinder";
+				newSuccessAlert(result.msg, url);
+			}
+			else {
+				errorAlert(result.msg);
+			}
+		},
+		error: function (ex) {
+			"Something went wrong, contact support - " + errorAlert(ex);
+		}
+	});
+}
 
 
 
 
 
 
+
+function cynlinderToBeDeleted(id) {
+	debugger;
+	$("#deletedId").val(id);
+}
+
+function deleteCynlinder() {
+	debugger;
+	var cynlinderDetails = {};
+	cynlinderDetails = $("#deletedId").val();
+	$.ajax({
+		type: 'Post',
+		url: "/Admin/DeleteCynlinder",
+		dataType: 'Json',
+		data:
+		{
+			categorysId: cynlinderDetails
+		},
+		success: function (result) {
+			debugger;
+			if (!result.isError) {
+				debugger;
+				var url = "/Admin/Cynlinder";
+				newSuccessAlert(result.msg, url);
+
+			} else {
+				errorAlert(result.msg);
+			}
+		}
+	});
+}
 
 

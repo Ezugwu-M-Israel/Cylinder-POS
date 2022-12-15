@@ -217,6 +217,120 @@ namespace GasPOS.Controllers
 
 
 
+        [HttpGet]
+        public JsonResult EditedCategory(int cynlinderId)
+        {
+            try
+            {
+                if (cynlinderId > 0)
+                {
+                    var cynlinder = _context.Cynlinders.Where(x => x.Id == cynlinderId && x.Active && !x.Deleted).FirstOrDefault();
+                    if (cynlinder != null)
+                    {
+                        return Json(new { isError = false, data = cynlinder });
+                    }
+                    return Json(new { isError = true, msg = "Could not Edit CynlinderCategory." });
+                }
+                else
+                {
+                    return Json(new { isError = true, msg = "Could not Edit CynlinderCategory." });
+                }
+            }
+            catch (Exception exp)
+            {
+
+                throw exp;
+            }
+        }
+
+
+        [HttpPost]
+        public JsonResult EditedCynlinders(string cynlindersss)
+        {
+            try
+            {
+                if (cynlindersss != null)
+                {
+                    var editCynlinderss = JsonConvert.DeserializeObject<CynlinderViewModel>(cynlindersss);
+                    if (editCynlinderss != null)
+                    {
+                        var updateCynlinderDetails = _adminHelpers.UpdateCynlinderInfo(editCynlinderss);
+                        if (updateCynlinderDetails != null)
+                        {
+                            return Json(new { isError = false, msg = "Cynlinder Edited Successfully." });
+                        }
+                    }
+                    return Json(new { isError = true, msg = "Something went wrong." });
+                }
+                return Json(new { isError = true, msg = "Something went wrong." });
+
+            }
+            catch (Exception exp)
+            {
+                throw exp;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+        [HttpGet]
+        public IActionResult DeleteCynlinder()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public JsonResult DeleteCynlinder(int categorysId)
+        {
+            try
+            {
+
+                if (categorysId != 0)
+                {
+                    var cynlinderToBeDeleted = _context.Cynlinders.Where(x => x.Id == categorysId && x.Deleted == false).FirstOrDefault();
+                    if (cynlinderToBeDeleted != null)
+                    {
+                        cynlinderToBeDeleted.Deleted = true;
+                        cynlinderToBeDeleted.Active = false;
+                        _context.Cynlinders.Update(cynlinderToBeDeleted);
+                        _context.SaveChanges();
+                        return Json(new { isError = false, msg = "Cynlinder Deleted Successfully." });
+                    }
+                    return Json(new { isError = true, msg = "Could not Delete Cynlinder." });
+                }
+                return Json(new { isError = true, msg = "Failed please try again." });
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }

@@ -69,7 +69,7 @@ namespace GasPOS.Controllers
                     }
                 }
             }
-            return Json(new { isError = false, msg = "Error Ocurred" });
+            return Json(new { isError = true, msg = "Error Ocurred" });
         }
 
 
@@ -93,41 +93,45 @@ namespace GasPOS.Controllers
             if (loginDetails != null)
             {
                 var applicationUserViewModel = JsonConvert.DeserializeObject<ApplicationUserViewModel>(loginDetails);
-                if (applicationUserViewModel.Email == null)
+                if (applicationUserViewModel != null)
                 {
-                    return Json(new { isError = true, msg = "Please Enter Your Emil" });
-                }
-                if (applicationUserViewModel.Password == null)
-                {
-                    return Json(new { isError = true, msg = "Please Enter Your Password" });
-                }
-                var existing = _userManager.Users.Where(u => u.UserName == applicationUserViewModel.Email).FirstOrDefault();
-                if (existing != null)
-                {
-                    var PasswordSigin = await _signInManager.PasswordSignInAsync(applicationUserViewModel.Email, applicationUserViewModel.Password, true, false).ConfigureAwait(false);
-                    if (PasswordSigin.Succeeded)
+                    if (applicationUserViewModel.Email == null)
                     {
-                        var userRole = _userHelper.GetUserDashboardPage(existing);
-                        if (userRole != null)
-                        {
-                            return Json(new { isError = false, msg = "Login Successfully", url = userRole });
-
-                        }
-                        else
-                        {
-                            return Json(new { isError = false, msg = "Login Successfully" });
-
-                        }
+                        return Json(new { isError = true, msg = "Please Enter Your Emil" });
                     }
+                    if (applicationUserViewModel.Password == null)
+                    {
+                        return Json(new { isError = true, msg = "Please Enter Your Password" });
+                    }
+                    var existing = _userManager.Users.Where(u => u.UserName == applicationUserViewModel.Email).FirstOrDefault();
+                    if (existing != null)
+                    {
+                        var PasswordSigin = await _signInManager.PasswordSignInAsync(applicationUserViewModel.Email, applicationUserViewModel.Password, true, false).ConfigureAwait(false);
+                        if (PasswordSigin.Succeeded)
+                        {
+                            var userRole = _userHelper.GetUserDashboardPage(existing);
+                            if (userRole != null)
+                            {
+                                return Json(new { isError = false, msg = "Login Successfully", url = userRole });
 
-                }
-                else
-                {
-                    return Json(new { isError = false, msg = "Username does not Exist!" });
+                            }
+                            else
+                            {
+                                return Json(new { isError = false, msg = "Login Successfully" });
 
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        return Json(new { isError = true, msg = "Username does not Exist!" });
+
+                    }
                 }
+              
             }
-            return Json(new { isError = false, msg = "Login was Failed!" });
+            return Json(new { isError = true, msg = "Login was Failed!" });
         }
 
         [HttpGet]
@@ -177,7 +181,7 @@ namespace GasPOS.Controllers
                     }
                 }
             }
-            return Json(new { isError = false, msg = "Error Ocurred" });
+            return Json(new { isError = true, msg = "Error Ocurred" });
         }
 
 

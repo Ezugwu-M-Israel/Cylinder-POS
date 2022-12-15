@@ -15,5 +15,6 @@ namespace GasPOS.IHelpers
         bool Order(OrderViewModel orderViewModel);
         List<OrderViewModel> ListOfOrder();
         string UpdateCynlinderCategoryInfo(CynlinderCategoryViewModel cynlinderCategoryViewModel);
+        string UpdateCynlinderInfo(CynlinderViewModel cynlinderViewModel);
     }
 }
