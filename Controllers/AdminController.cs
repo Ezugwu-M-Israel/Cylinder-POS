@@ -245,7 +245,7 @@ namespace GasPOS.Controllers
 
 
         [HttpPost]
-        public JsonResult EditedCynlinders(string cynlindersss)
+        public JsonResult EditedCynlinders(string cynlindersss, string base64)
         {
             try
             {
@@ -254,7 +254,7 @@ namespace GasPOS.Controllers
                     var editCynlinderss = JsonConvert.DeserializeObject<CynlinderViewModel>(cynlindersss);
                     if (editCynlinderss != null)
                     {
-                        var updateCynlinderDetails = _adminHelpers.UpdateCynlinderInfo(editCynlinderss);
+                        var updateCynlinderDetails = _adminHelpers.UpdateCynlinderInfo(editCynlinderss, base64);
                         if (updateCynlinderDetails != null)
                         {
                             return Json(new { isError = false, msg = "Cynlinder Edited Successfully." });
@@ -270,15 +270,6 @@ namespace GasPOS.Controllers
                 throw exp;
             }
         }
-
-
-
-
-
-
-
-
-
 
 
         [HttpGet]

@@ -93,7 +93,7 @@
     <!-- ======= Services Section ======= -->
 
     <section id="service" class="services pt-0">
-        <div class="container" data-aos="fade-up">
+        <div class="container-fluid" data-aos="fade-up">
 
             <div class="section-header">
                 <span>Cynlinder</span>
@@ -103,18 +103,19 @@
 
             <div class="row gy-4">
 
+
                 @if (Model != null && Model.Count() > 0)
                 {
                     @foreach (var gas in Model)
                     {
-                        <div class="card col-3 pb-1" style="margin-top:95px; background-color: #f6f9ff;">
+                        <div class="card col-3 mr-3" style="margin-top:95px; background-color: #f6f9ff;">
                             <img src="@gas.ImageUrl" alt="John" style="width:100%; height:190px;" />
-                            <h1 class="text-dark text-center">@gas.Name</h1>
+                            <h5 class="text-dark text-center">@gas.Name</h5>
                             <p class="text-dark text-center"><b>@gas.Price</b></p>
                             @if (User.IsInRole("User"))
                             {
-                                <div class="rounded-pill" style="background-color:#012970;">
-                                    <a  type="button" class="btn rounded-pill offset-5 text-white" asp-controller="CustomerOrder" asp-action="Index">BUY</a>
+                                <div class="rounded-pill m-1" style="background-color:#012970;">
+                                    <a  type="button" class="btn rounded-pill offset-3 text-white" asp-controller="CustomerOrder" asp-action="Index">View Cynlinders</a>
                                 </div>
                             }
 

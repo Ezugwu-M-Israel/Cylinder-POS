@@ -309,7 +309,6 @@ function deleteCynlinderCategory() {
 	});
 }
 
-
 //function deleteCynlinderCategory() {
 //	var Id = $('#deleteId').val();
 //	debugger;
@@ -336,9 +335,6 @@ function deleteCynlinderCategory() {
 //	})
 //}
 
-
-
-
 function cynlinderToBeEdited(id) {
 	debugger;
 	$.ajax({
@@ -355,6 +351,7 @@ function cynlinderToBeEdited(id) {
 				$('#editName').val(data.data.name);
 				$('#editPrice').val(data.data.price);
 				$('#cynlinderCategoryId').val(data.data.cynlinderCategoryId);
+				$('#editImageUrl').val(data.data.editImageUrl);
 				$('#editId').val(data.data.id);
 
 			}
@@ -365,40 +362,49 @@ function cynlinderToBeEdited(id) {
 	});
 };
 
-function editCynlinder() {
 
+function editCynlinder() {
 	debugger;
 	var data = {};
+	var file = document.getElementById("editImageUrl").files;
 	data.Name = $("#editName").val();
 	data.CynlinderCategoryId = $('#cynlinderCategoryId').val();
 	data.Id = $("#editId").val();
 	data.Price = $("#editPrice").val();
 	let cynlindersss = JSON.stringify(data);
-	debugger;
-	$.ajax({
-		type: 'POST',
-		url: '/Admin/EditedCynlinders', // we are calling json method,
-		dataType: 'json',
-		data:
-		{
-			cynlindersss: cynlindersss,
-		},
-		success: function (result) {
-			debugger;
-			if (!result.isError) {
-				var url = "/Admin/Cynlinder";
-				newSuccessAlert(result.msg, url);
-			}
-			else {
-				errorAlert(result.msg);
-			}
-		},
-		error: function (ex) {
-			"Something went wrong, contact support - " + errorAlert(ex);
-		}
-	});
-}
+	const reader = new FileReader();
+	reader.readAsDataURL(file[0]);
+	var base64;
+	reader.onload = function () {
+		base64 = reader.result;
+		debugger;
+		$.ajax({
+			type: 'POST',
+			url: '/Admin/EditedCynlinders', // we are calling json method,
+			dataType: 'json',
+			data:
+			{
+				cynlindersss: cynlindersss,
+				base64: base64
 
+			},
+			success: function (result) {
+				debugger;
+				if (!result.isError) {
+					var url = "/Admin/Cynlinder";
+					newSuccessAlert(result.msg, url);
+				}
+				else {
+					errorAlert(result.msg);
+				}
+			},
+			error: function (ex) {
+				"Something went wrong, contact support - " + errorAlert(ex);
+			}
+		});
+	}
+     
+}
 
 
 
@@ -407,13 +413,13 @@ function editCynlinder() {
 
 function cynlinderToBeDeleted(id) {
 	debugger;
-	$("#deletedId").val(id);
+	$("#deletId").val(id);
 }
 
 function deleteCynlinder() {
 	debugger;
 	var cynlinderDetails = {};
-	cynlinderDetails = $("#deletedId").val();
+	cynlinderDetails = $("#deletId").val();
 	$.ajax({
 		type: 'Post',
 		url: "/Admin/DeleteCynlinder",
@@ -435,5 +441,7 @@ function deleteCynlinder() {
 		}
 	});
 }
+
+
 
 

@@ -276,7 +276,7 @@ namespace GasPOS.Helpers
 		}
 
 
-        public string UpdateCynlinderInfo(CynlinderViewModel cynlinderViewModel)
+        public string UpdateCynlinderInfo(CynlinderViewModel cynlinderViewModel, string base64)
         {
             try
             {
@@ -288,6 +288,7 @@ namespace GasPOS.Helpers
                         cynlinderDetails.Name = cynlinderDetails.Name;
                         cynlinderDetails.Price = cynlinderDetails.Price;
 						cynlinderDetails.CynlinderCategoryId = cynlinderDetails.CynlinderCategoryId;
+						cynlinderDetails.ImageUrl = base64;
                         cynlinderDetails.Active = true;
                         cynlinderDetails.Deleted = false;
 
