@@ -362,7 +362,6 @@ function cynlinderToBeEdited(id) {
 	});
 };
 
-
 function editCynlinder() {
 	debugger;
 	var data = {};
@@ -405,11 +404,6 @@ function editCynlinder() {
 	}
      
 }
-
-
-
-
-
 
 function cynlinderToBeDeleted(id) {
 	debugger;
