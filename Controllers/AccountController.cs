@@ -61,6 +61,10 @@ namespace GasPOS.Controllers
                     {
                         return Json(new { isError = true, msg = "Password and Confirm Password must match" });
                     }
+                    if (applicationUserViewModel.Password?.Length < 5)
+                    {
+                        return Json(new { isError = true, msg = "Password cannot be less than 5" });
+                    }
                     var createUser = await _userHelper.UserRegistertion(applicationUserViewModel, base64).ConfigureAwait(false);
                     if (createUser != null)
                     {
@@ -172,6 +176,10 @@ namespace GasPOS.Controllers
                     if (applicationUserViewModel.Password != applicationUserViewModel.ConfirmPassword)
                     {
                         return Json(new { isError = true, msg = "Password and Confirm Password must match" });
+                    }
+                    if (applicationUserViewModel.Password?.Length < 5)
+                    {
+                        return Json(new { isError = true, msg = "Password cannot be less than 5" });
                     }
                     var registerAdmin = await _userHelper.AdminRegistertion(applicationUserViewModel, base64).ConfigureAwait(false);
                     if (registerAdmin != null)

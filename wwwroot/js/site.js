@@ -75,6 +75,7 @@
 		{
 			document.querySelector("#confirmPasswordVDT").style.display = "none";
 		}
+
 	}
 	else
 	{
