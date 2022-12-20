@@ -245,6 +245,7 @@ namespace GasPOS.Helpers
 			}
 			return listOfOrder;
 		}
+
 		public string UpdateCynlinderCategoryInfo(CynlinderCategoryViewModel cynlinderCategoryViewModel)
 		{
 			try
@@ -275,6 +276,38 @@ namespace GasPOS.Helpers
 		}
 
 
-	}
+        public string UpdateCynlinderInfo(CynlinderViewModel cynlinderViewModel, string base64)
+        {
+            try
+            {
+                if (cynlinderViewModel != null)
+                {
+                    var cynlinderDetails = _context.Cynlinders.Where(x => x.Id == cynlinderViewModel.Id && x.Active && !x.Deleted).FirstOrDefault();
+                    if (cynlinderDetails != null)
+                    {
+                        cynlinderDetails.Name = cynlinderViewModel.Name;
+                        cynlinderDetails.Price = cynlinderViewModel.Price;
+                        cynlinderDetails.ImageUrl = base64;
+                        cynlinderDetails.Active = true;
+                        cynlinderDetails.Deleted = false;
+
+                        _context.Update(cynlinderDetails);
+                        _context.SaveChanges();
+                        return "CynlinderCategory was Successfully Updated";
+                    }
+                    return null;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
+
+    }
 
 }

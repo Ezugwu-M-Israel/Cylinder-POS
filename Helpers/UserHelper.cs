@@ -73,7 +73,6 @@ namespace GasPOS.Helpers
 			return null;
 		}
 
-
 		public async Task<ApplicationUser> AdminRegistertion(ApplicationUserViewModel model, string base64)
 		{
 			try
@@ -122,8 +121,6 @@ namespace GasPOS.Helpers
 			}
 			return null;
 		}
-
-
 
 		public async Task<bool> CheckIfUserIsAdmin(string username)
 		{
