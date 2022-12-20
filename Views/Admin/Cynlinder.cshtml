@@ -30,20 +30,30 @@
 
                                  <div class="row col-12">
 
-                                    <div class="col-4 mx-4 btn-group" role="group" style="margin-top:10px; background-color:#012970;">
-                                        <a onclick="cynlinderToBeEdited('@gas.Id')" class="mx-3 text-white" data-bs-toggle="modal" data-bs-target="#smallModals">
-                                            EDIT
+
+                                        <div class="w-10 pb-3 btn-group" role="group">
+
+                                            <a href="#" onclick="cynlinderToBeEdited('@gas.Id')" class="mx-4 text-white btn-lg rounded-pill text-center" data-bs-toggle="modal" data-bs-target="#smallModals" style="background-color:#012970;">
+                                                EDIT
+                                            </a>
+
+                                            <a href="#" onclick="cynlinderToBeDeleted('@gas.Id')" class="mx-5 text-center text-white rounded-pill btn" data-bs-toggle="modal" data-bs-target="#smallModalss" style="background-color:#012970;">
+                                                DELETE
+                                            </a>
+                                        </div>
+
+@*                                    <div class="col-4 mx-4  pb-2 btn-group">
+
+                                        <a href="#" onclick="cynlinderToBeEdited('@gas.Id')" class="btn rounded-pill text-center btn-md btn-block text-white" style="background-color:#012970;" data-bs-toggle="modal" data-bs-target="#smallModals">
+                                            <i class="bi bi-pencil-square"></i>EDIT
                                         </a>
 
-                                    </div>
 
-                                    <div class="col-4 mx-3 btn-group" role="group" style="margin-top:10px; background-color:#012970;">
-
-                                        <a onclick="cynlinderToBeDeleted('@gas.Id')" class=" text-center text-white" data-bs-toggle="modal" data-bs-target="#smallModalss">
-                                            DELETE
+                                        <a href="#" onclick="cynlinderToBeDeleted('@gas.Id')" class="btn mx-5 float-right ml-auto text-center offset-7 rounded-pill text-white" style="background-color:#012970;" data-bs-toggle="modal" data-bs-target="#smallModalss">
+                                              <i class="bi bi-trash-fill"></i>DELETE
                                         </a>
-                                    </div>
-
+                                         
+                                    </div>*@
 
                                  </div>
 

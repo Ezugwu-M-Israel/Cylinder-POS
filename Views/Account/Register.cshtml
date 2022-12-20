@@ -19,86 +19,87 @@
                 </a>
             </div><!-- End Logo -->
 
-              <div class="card mb-3 pb-5">
+            <div class="card mb-3 pb-5">
 
                 <div class="card-body pb-5">
 
-                  <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
-                    <p class="text-center small">Enter your personal details to create account</p>
-                  </div>
+                    <div class="pt-4 pb-2">
+                        <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
+                        <p class="text-center small">Enter your personal details to create account</p>
+                    </div>
 
-                      <div class="row justify-content-center">
-                            <div class="col-sm-6">
-                                <label for="name" class="form-label">First Name</label>
-                                <input type="text" name="name" class="form-control" id="firstName" required />
-                                <div class="invalid-feedback">Please, enter your name!</div>
-                            </div>
-
-                            <div class="col-sm-6">
-                                <label for="name" class="form-label">Last Name</label>
-                                <input type="text" name="name" class="form-control" id="lastName" required />
-                                <div class="invalid-feedback">Please, enter your name!</div>
-                            </div>
-                        
-                      </div>
-
-
-                     <div class="row justify-content-center">
+                    <div class="row justify-content-center">
                         <div class="col-sm-6">
-                          <label for="MiddleName" class="form-label"> MiddleName</label>
-                          <input type="text" name="name" class="form-control" id="middleName" required />
-                          <div class="invalid-feedback">Please enter your middleName!</div>
+                            <label for="name" class="form-label">First Name</label>
+                            <input type="text" name="fname" class="form-control" id="firstName" required />
+                            <p class="text-danger" id="firstNameVDT" style="display: none;">Enter Your FirstName</p>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="name" class="form-label">Last Name</label>
+                            <input type="text" name="name" class="form-control" id="lastName" required />
+                            <p class="text-danger" id="lastNameVDT" style="display: none;">Enter Your LastName</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row justify-content-center">
+                        <div class="col-sm-6">
+                            <label for="MiddleName" class="form-label"> MiddleName</label>
+                            <input type="text" name="name" class="form-control" id="middleName" required />
+                            <p class="text-danger" id="middleNameVDT" style="display: none;">Enter Your MiddleName</p>
                         </div>
 
                         <div class="col-sm-6">
                             <label for="email" class="form-label"> Email</label>
                             <input type="text" name="name" class="form-control" id="email" required />
-                            <div class="invalid-feedback">Please enter your email!</div>
+                            <p class="text-danger" id="emailVDT" style="display: none;">Enter Your Email</p>
                         </div>
-                     </div>
-
-
-                     <div class="row justify-content-center">
-                        <div class="col-sm-6">
-                          <label for="address" class="form-label">Home Address</label>
-                          <input type="text" name="name" class="form-control" id="address" required />
-                          <div class="invalid-feedback">Please enter your adddress!</div>
-                        </div>
-
-                        <div class="col-sm-6">
-                          <label for="yourPassword" class="form-label">Password</label>
-                          <input type="password" name="password" class="form-control" id="password" required />
-                          <div class="invalid-feedback">Please enter your password!</div>
-                        </div>
-                     </div>
+                    </div>
 
 
                     <div class="row justify-content-center">
-                       <div class="col-sm-6">
-                          <label for="yourPassword" class="form-label">Confirm Password</label>
-                          <input type="password" name="password" class="form-control" id="confirmPassword" required minlength="5" maxlength="10" />
-                          <div class="invalid-feedback">Please enter your password!</div>
-                       </div>
+                        <div class="col-sm-6">
+                            <label for="address" class="form-label">Home Address</label>
+                            <input type="text" name="name" class="form-control" id="address" required />
+                            <p class="text-danger" id="addressVDT" style="display: none;">Enter Your Address</p>
+                        </div>
 
                         <div class="col-sm-6">
-                          <label for="file" class="form-label">ProfilePicture</label>
-                          <input type="file" name="ProfilePicture" class="form-control" id="picture" required minlength="5" maxlength="10" />
-                          <div class="invalid-feedback">Please enter your picture!</div>
+                            <label for="yourPassword" class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control" id="password" required minlength="5" maxlength="10" />
+                             <p class="text-danger" id="passwordVDT" style="display: none;">Enter Your Password</p>
+                        </div>
+                    </div>
+
+
+                    <div class="row justify-content-center">
+                        <div class="col-sm-6">
+                            <label for="yourPassword" class="form-label">Confirm Password</label>
+                            <input type="password" name="password" class="form-control" id="confirmPassword" required minlength="5" maxlength="10" />
+                            <p class="text-danger" id="confirmPasswordVDT" style="display: none;">Enter Your ConfirmPassword</p>
+                        </div>
+
+                         <div class="col-sm-6">
+                            <label for="file" class="form-label">ProfilePicture</label>
+                            <input type="file" name="ProfilePicture" class="form-control" id="picture" required />
+                            <p class="text-danger" id="pictureVDT" style="display: none;">Enter Your Picture</p>
                         </div>
 
                     </div>
 
                     <div class="col-12 pt-5">
-                      <button class="btn btn-primary w-100 rounded-pill" type="submit" onclick="registerUser()">Create Account</button>
+                        <button class="btn btn-primary w-100 rounded-pill" type="submit" value="Submit" onclick="registerUser()">Create Account</button>
                     </div>
 
                     <div class="col-12 pt-3">
-                      <p class="small mb-0">Already have an account? <a asp-controller="Account" asp-action="Login">Login</a></p>
+                        <p class="small mb-0">Already have an account? <a asp-controller="Account" asp-action="Login">Login</a></p>
                     </div>
 
                 </div>
-              </div>
+            </div>
+
 
         <div class="credits">
             <!-- All the links in the footer should remain intact. -->

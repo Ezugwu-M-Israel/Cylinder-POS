@@ -31,14 +31,14 @@
                         <div class="row justify-content-center">
                             <div class="col-sm-6">
                                 <label for="name" class="form-label">First Name</label>
-                                <input type="text" name="name" class="form-control" id="firstName" required  />
-                                <div class="invalid-feedback">Please, enter your name!</div>
+                                <input type="text" name="fname" class="form-control" id="firstName" required />
+                                <p class="text-danger" id="firstNameVDT" style="display: none;">Enter Your FirstName</p>
                             </div>
 
                             <div class="col-sm-6">
                                 <label for="name" class="form-label">Last Name</label>
                                 <input type="text" name="name" class="form-control" id="lastName" required />
-                                <div class="invalid-feedback">Please, enter your name!</div>
+                                <p class="text-danger" id="lastNameVDT" style="display: none;">Enter Your LastName</p>
                             </div>
 
                         </div>
@@ -48,13 +48,13 @@
                             <div class="col-sm-6">
                                 <label for="MiddleName" class="form-label"> MiddleName</label>
                                 <input type="text" name="name" class="form-control" id="middleName" required />
-                                <div class="invalid-feedback">Please enter your middleName!</div>
+                                <p class="text-danger" id="middleNameVDT" style="display: none;">Enter Your MiddleName</p>
                             </div>
 
                             <div class="col-sm-6">
                                 <label for="email" class="form-label"> Email</label>
                                 <input type="text" name="name" class="form-control" id="email" required />
-                                <div class="invalid-feedback">Please enter your email!</div>
+                                <p class="text-danger" id="emailVDT" style="display: none;">Enter Your Email</p>
                             </div>
                         </div>
 
@@ -63,13 +63,13 @@
                             <div class="col-sm-6">
                                 <label for="address" class="form-label">Home Address</label>
                                 <input type="text" name="name" class="form-control" id="address" required />
-                                <div class="invalid-feedback">Please enter your adddress!</div>
+                                <p class="text-danger" id="addressVDT" style="display: none;">Enter Your Address</p>
                             </div>
 
                             <div class="col-sm-6">
                                 <label for="yourPassword" class="form-label">Password</label>
                                 <input type="password" name="password" class="form-control" id="password" required minlength="5" maxlength="10" />
-                                <div class="invalid-feedback">Please enter your password!</div>
+                                <p class="text-danger" id="passwordVDT" style="display: none;">Enter Your Password</p>
                             </div>
                         </div>
 
@@ -78,13 +78,13 @@
                             <div class="col-sm-6">
                                 <label for="yourPassword" class="form-label">Confirm Password</label>
                                 <input type="password" name="password" class="form-control" id="confirmPassword" required minlength="5" maxlength="10" />
-                                <div class="invalid-feedback">Please enter your password!</div>
+                                <p class="text-danger" id="confirmPasswordVDT" style="display: none;">Enter Your ConfirmPassword</p>
                             </div>
 
                             <div class="col-sm-6">
                                 <label for="file" class="form-label">ProfilePicture</label>
                                 <input type="file" name="ProfilePicture" class="form-control" id="picture" required />
-                                <div class="invalid-feedback">Please enter your picture!</div>
+                                <p class="text-danger" id="pictureVDT" style="display: none;">Enter Your Picture</p>
                             </div>
 
                         </div>

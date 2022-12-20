@@ -174,8 +174,6 @@ namespace GasPOS.Controllers
             }
         }
 
-
-
         [HttpGet]
         public IActionResult DeleteCynlinderCategory()
         {
@@ -211,11 +209,6 @@ namespace GasPOS.Controllers
                 throw;
             }
         }
-
-
-
-
-
 
         [HttpGet]
         public JsonResult EditedCategory(int cynlinderId)

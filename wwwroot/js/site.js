@@ -1,46 +1,129 @@
 ﻿function registerUser() {
     debugger;
     var data = {};
-    var file = document.getElementById("picture").files;
+	var file = document.getElementById("picture").files;
     data.FirstName = $('#firstName').val();
     data.LastName = $('#lastName').val();
     data.MiddleName = $('#middleName').val();
     data.Address = $('#address').val();
     data.Email = $('#email').val();
     data.Password = $('#password').val();
-    data.ConfirmPassword = $('#confirmPassword').val();
-    let userDetails = JSON.stringify(data);
-    const reader = new FileReader();
-    reader.readAsDataURL(file[0]);
-    var base64;
-    reader.onload = function () {
-        base64 = reader.result;
-		$.ajax({
-			type: 'Post',
-			dataType: 'Json',
-			url: '/Account/Register',
-			data:
-			{
-				userDetails: userDetails,
-				base64: base64
-			},
-			success: function (result) {
-				debugger;
-				if (!result.isError) {
-					var url = '/Account/Login';
-					successAlertWithRedirect(result.msg, url);
-					
-				}
-				else {
-					errorAlert(result.msg);
-				}
-			},
-			error: function (ex) {
-				errorAlert("Error Occured,try again.");
-			}
-		});
+	data.ConfirmPassword = $('#confirmPassword').val();
+	if (file[0] == null || data.FirstName == "" || data.LastName == "" || data.MiddleName == "" || data.Address == "" || data.Email == "" || data.Password == "" || data.ConfirmPassword == "")
+	{
+		if (file[0] != null)
+		{
+			document.querySelector("#pictureVDT").style.display = "block";
+		}
+		else
+		{
+			document.querySelector("#pictureVDT").style.display = "none";
+		}
+		if (data.FirstName == "")
+		{
+			document.querySelector("#firstNameVDT").style.display = "block";
+		}
+		else
+		{
+			document.querySelector("#firstNameVDT").style.display = "none";
+		}
+		if (data.LastName == "")
+		{
+			document.querySelector("#lastNameVDT").style.display = "block";
+		}
+		else
+		{
+			document.querySelector("#lastNameVDT").style.display = "none";
+		}
+		if (data.MiddleName == "")
+		{
+			document.querySelector("#middleNameVDT").style.display = "block";
+		}
+		else
+		{
+			document.querySelector("#middleNameVDT").style.display = "none";
+		}
+		if (data.Address == "")
+		{
+			document.querySelector("#addressVDT").style.display = "block";
+		}
+		else
+		{
+			document.querySelector("#addressVDT").style.display = "none";
+		}
+		if (data.Email == "")
+		{
+			document.querySelector("#emailVDT").style.display = "block";
+		}
+		else
+		{
+			document.querySelector("#emailVDT").style.display = "none";
+		}
+		if (data.Password == "")
+		{
+			document.querySelector("#passwordVDT").style.display = "block";
+		}
+		else
+		{
+			document.querySelector("#passwordVDT").style.display = "none";
+		}
+		if (data.ConfirmPassword == "")
+		{
+			document.querySelector("#confirmPasswordVDT").style.display = "block";
+		}
+		else
+		{
+			document.querySelector("#confirmPasswordVDT").style.display = "none";
+		}
+	}
+	else
+	{
+		document.querySelector("#pictureVDT").style.display = "none";
+		document.querySelector("#firstNameVDT").style.display = "none";
+		document.querySelector("#lastNameVDT").style.display = "none";
+		document.querySelector("#middleNameVDT").style.display = "none";
+		document.querySelector("#addressVDT").style.display = "none";
+		document.querySelector("#emailVDT").style.display = "none";
+		document.querySelector("#passwordVDT").style.display = "none";
+		document.querySelector("#confirmPasswordVDT").style.display = "none";
+		let userDetails = JSON.stringify(data);
+		const reader = new FileReader();
+		reader.readAsDataURL(file[0]);
+		var base64;
+		reader.onload = function () {
+			base64 = reader.result;
+			$.ajax({
+				type: 'Post',
+				dataType: 'Json',
+				url: '/Account/Register',
+				data:
+				{
+					userDetails: userDetails,
+					base64: base64
+				},
+				success: function (result) {
+					debugger;
+					if (!result.isError) {
+						var url = '/Account/Login';
+						successAlertWithRedirect(result.msg, url);
 
-    }
+					}
+					else {
+						errorAlert(result.msg);
+					}
+				},
+				error: function (ex) {
+					errorAlert("Error Occured,try again.");
+				}
+
+			});
+
+		}
+
+
+
+	}
+
 }
 
 function registerAdmin() {
@@ -54,38 +137,103 @@ function registerAdmin() {
 	data.Email = $('#email').val();
 	data.Password = $('#password').val();
 	data.ConfirmPassword = $('#confirmPassword').val();
-	let adminDetails = JSON.stringify(data);
-	const reader = new FileReader();
-	reader.readAsDataURL(file[0]);
-	var base64;
-	reader.onload = function () {
-		base64 = reader.result;
-		$.ajax({
-			type: 'Post',
-			dataType: 'Json',
-			url: '/Account/AdminRegister',
-			data:
-			{
-				adminDetails: adminDetails,
-				base64: base64
-			},
-			success: function (result) {
-				debugger;
-				if (!result.isError) {
-					var url = '/Account/Login';
-					successAlertWithRedirect(result.msg, url);
+	if (file[0] == null || data.FirstName == "" || data.LastName == "" || data.MiddleName == "" || data.Address == "" || data.Email == "" || data.Password == "" || data.ConfirmPassword == "") {
+		if (file[0] != null) {
+			document.querySelector("#pictureVDT").style.display = "block";
+		}
+		else {
+			document.querySelector("#pictureVDT").style.display = "none";
+		}
+		if (data.FirstName == "") {
+			document.querySelector("#firstNameVDT").style.display = "block";
+		}
+		else {
+			document.querySelector("#firstNameVDT").style.display = "none";
+		}
+		if (data.LastName == "") {
+			document.querySelector("#lastNameVDT").style.display = "block";
+		}
+		else {
+			document.querySelector("#lastNameVDT").style.display = "none";
+		}
+		if (data.MiddleName == "") {
+			document.querySelector("#middleNameVDT").style.display = "block";
+		}
+		else {
+			document.querySelector("#middleNameVDT").style.display = "none";
+		}
+		if (data.Address == "") {
+			document.querySelector("#addressVDT").style.display = "block";
+		}
+		else {
+			document.querySelector("#addressVDT").style.display = "none";
+		}
+		if (data.Email == "") {
+			document.querySelector("#emailVDT").style.display = "block";
+		}
+		else {
+			document.querySelector("#emailVDT").style.display = "none";
+		}
+		if (data.Password == "") {
+			document.querySelector("#passwordVDT").style.display = "block";
+		}
+		else {
+			document.querySelector("#passwordVDT").style.display = "none";
+		}
+		if (data.ConfirmPassword == "") {
+			document.querySelector("#confirmPasswordVDT").style.display = "block";
+		}
+		else {
+			document.querySelector("#confirmPasswordVDT").style.display = "none";
+		}
+	}
+	else {
+		document.querySelector("#pictureVDT").style.display = "none";
+		document.querySelector("#firstNameVDT").style.display = "none";
+		document.querySelector("#lastNameVDT").style.display = "none";
+		document.querySelector("#middleNameVDT").style.display = "none";
+		document.querySelector("#addressVDT").style.display = "none";
+		document.querySelector("#emailVDT").style.display = "none";
+		document.querySelector("#passwordVDT").style.display = "none";
+		document.querySelector("#confirmPasswordVDT").style.display = "none";
+		let userDetails = JSON.stringify(data);
+		const reader = new FileReader();
+		reader.readAsDataURL(file[0]);
+		var base64;
+		reader.onload = function () {
+			base64 = reader.result;
+			$.ajax({
+				type: 'Post',
+				dataType: 'Json',
+				url: '/Account/Register',
+				data:
+				{
+					userDetails: userDetails,
+					base64: base64
+				},
+				success: function (result) {
+					debugger;
+					if (!result.isError) {
+						var url = '/Account/Login';
+						successAlertWithRedirect(result.msg, url);
 
+					}
+					else {
+						errorAlert(result.msg);
+					}
+				},
+				error: function (ex) {
+					errorAlert("Error Occured,try again.");
 				}
-				else {
-					errorAlert(result.msg);
-				}
-			},
-			error: function (ex) {
-				errorAlert("Error Occured,try again.");
-			}
-		});
+
+			});
+
+		}
+
+
 
 	}
+
 }
 
 function login() {
@@ -308,32 +456,6 @@ function deleteCynlinderCategory() {
 		}
 	});
 }
-
-//function deleteCynlinderCategory() {
-//	var Id = $('#deleteId').val();
-//	debugger;
-//	$.ajax({
-//		type: 'Post',
-//		dataType: 'Json',
-//		url: '/Admin/DeleteCynlinderCategory',
-//		data: {
-//			Id: Id
-//		},
-//		success: function (result) {
-//			debugger;
-//			if (!result.isError) {
-//				var url = '/Admin/CynlinderCategory'
-//				successAlertWithRedirect(result.msg, url)
-//			}
-//			else {
-//				errorAlert(result.msg)
-//			}
-//		},
-//		error: function (ex) {
-//			errorAlert("Error occured try again");
-//		}
-//	})
-//}
 
 function cynlinderToBeEdited(id) {
 	debugger;

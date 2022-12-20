@@ -41,19 +41,19 @@ namespace GasPOS.Controllers
                     {
                         return Json(new { isError = true, msg = "Please A user with this email already exist" });
                     }
-                    if (applicationUserViewModel.FirstName == null)
+                    if (applicationUserViewModel.FirstName == String.Empty)
                     {
                         return Json(new { isError = true, msg = "Please Enter Your FirstName" });
                     }
-                    if (applicationUserViewModel.MiddleName == null)
+                    if (applicationUserViewModel.MiddleName == String.Empty)
                     {
                         return Json(new { isError = true, msg = "Please Enter Your MiddleName" });
                     }
-                    if (applicationUserViewModel.LastName == null)
+                    if (applicationUserViewModel.LastName == String.Empty)
                     {
-                        return Json(new { isError = true, msg = "Please Enter Your LastName" });
+                        return Json(new { isError = true, msg = "Please Enter Your LastName" });  // If posting with ASP.NET Forms chek null with the NULL keyword
                     }
-                    if (applicationUserViewModel.Address == null)
+                    if (applicationUserViewModel.Address == String.Empty) // If posting with jquery chek null with STRING.EMPTY
                     {
                         return Json(new { isError = true, msg = "Please Enter Your Address" });
                     }
@@ -95,11 +95,11 @@ namespace GasPOS.Controllers
                 var applicationUserViewModel = JsonConvert.DeserializeObject<ApplicationUserViewModel>(loginDetails);
                 if (applicationUserViewModel != null)
                 {
-                    if (applicationUserViewModel.Email == null)
+                    if (applicationUserViewModel.Email == String.Empty)
                     {
                         return Json(new { isError = true, msg = "Please Enter Your Emil" });
                     }
-                    if (applicationUserViewModel.Password == null)
+                    if (applicationUserViewModel.Password == String.Empty)
                     {
                         return Json(new { isError = true, msg = "Please Enter Your Password" });
                     }
@@ -153,19 +153,19 @@ namespace GasPOS.Controllers
                     {
                         return Json(new { isError = true, msg = "Please A user with this email already exist" });
                     }
-                    if (applicationUserViewModel.FirstName == null)
+                    if (applicationUserViewModel.FirstName == String.Empty)
                     {
                         return Json(new { isError = true, msg = "Please Enter Your FirstName" });
                     }
-                    if (applicationUserViewModel.MiddleName == null)
+                    if (applicationUserViewModel.MiddleName == String.Empty)
                     {
                         return Json(new { isError = true, msg = "Please Enter Your MiddleName" });
                     }
-                    if (applicationUserViewModel.LastName == null)
+                    if (applicationUserViewModel.LastName == String.Empty)
                     {
                         return Json(new { isError = true, msg = "Please Enter Your LastName" });
                     }
-                    if (applicationUserViewModel.Address == null)
+                    if (applicationUserViewModel.Address == String.Empty)
                     {
                         return Json(new { isError = true, msg = "Please Enter Your Address" });
                     }
@@ -183,6 +183,14 @@ namespace GasPOS.Controllers
             }
             return Json(new { isError = true, msg = "Error Ocurred" });
         }
+
+
+
+
+
+
+
+
 
 
 

@@ -285,10 +285,9 @@ namespace GasPOS.Helpers
                     var cynlinderDetails = _context.Cynlinders.Where(x => x.Id == cynlinderViewModel.Id && x.Active && !x.Deleted).FirstOrDefault();
                     if (cynlinderDetails != null)
                     {
-                        cynlinderDetails.Name = cynlinderDetails.Name;
-                        cynlinderDetails.Price = cynlinderDetails.Price;
-						cynlinderDetails.CynlinderCategoryId = cynlinderDetails.CynlinderCategoryId;
-						cynlinderDetails.ImageUrl = base64;
+                        cynlinderDetails.Name = cynlinderViewModel.Name;
+                        cynlinderDetails.Price = cynlinderViewModel.Price;
+                        cynlinderDetails.ImageUrl = base64;
                         cynlinderDetails.Active = true;
                         cynlinderDetails.Deleted = false;
 
